@@ -1,0 +1,16 @@
+.summaryList{
+    width: 100%;
+    /* text-align: center; */
+    height: 95%;
+    vertical-align: middle;
+    margin: 1%;
+}
+.clickMe{
+
+}
+.CellLine{
+    background-color: cadetblue;
+    padding: 1%;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
