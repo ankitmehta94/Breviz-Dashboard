@@ -1,14 +1,11 @@
-.summaryList{
-    /* width: 100%; */
-    /* text-align: center; */
-  
+.editSummary{
+    height: 95%;
     vertical-align: middle;
     margin: 1%;
 }
-.clickMe{
-    background-color: cadetblue;
-}
-.CellLine{
+.transcripDiv{
+    max-height: 50%;
+    overflow-y: scroll;
     background-color: #F5F7FE;
     padding: 1%;
     margin-bottom: 5px;

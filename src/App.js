@@ -1,14 +1,14 @@
 
 import './App.css';
-import Content from './Content/Content'
-import Sidebar from './Sidebar/Sidebar'
+import Content from './Content/Content.jsx'
+import Sidebar from './Sidebar/Sidebar.jsx'
 function App() {
   return (
     <div className="App">
       <div className="header">
       </div>
       <div className="main">
-        <div className="sidebar"></div>
+        <Sidebar />
         <Content />
       </div>
     </div>
