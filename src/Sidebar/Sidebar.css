@@ -1,8 +1,11 @@
 .sidebar{
   width: 25vw;
-  height: 100%;
+  height: 98%;
   display: flex;
   flex-direction: row;
   justify-content: start;
-  background-color:#363740;
+  background-color: #363740;
+  border-radius: 10px;
+  margin-left: 1%;
+  margin-bottom: 1rem;
 }

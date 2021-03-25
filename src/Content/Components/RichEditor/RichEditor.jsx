@@ -1,11 +1,12 @@
 import React from 'react';
 import {Editor, EditorState, RichUtils, ContentState} from 'draft-js';
 import './RichEditor.css';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSave } from '@fortawesome/free-solid-svg-icons'
 class RichEditor extends React.Component {
   constructor(props) {
     super(props);
-     const initialContentState = ContentState.createFromText(props.Summary);
+     const initialContentState = ContentState.createFromText(props.SummaryText);
     this.state = {editorState: EditorState.createWithContent(initialContentState)};
     // this.state = {editorState: EditorState.createEmpty()};
 
@@ -66,7 +67,13 @@ class RichEditor extends React.Component {
     }
 
     return (
+      <div className={'editorBase'}>
       <div className="RichEditor-root">
+        
+        <TopLevelStyleControls
+          editorState={editorState}
+          onToggle={this.toggleBlockType}
+        />
         <BlockStyleControls
           editorState={editorState}
           onToggle={this.toggleBlockType}
@@ -89,6 +96,7 @@ class RichEditor extends React.Component {
             spellCheck={true}
           />
         </div>
+      </div>
       </div>
     );
   }
@@ -190,6 +198,14 @@ const InlineStyleControls = (props) => {
           style={type.style}
         />
       )}
+    </div>
+  );
+};
+const TopLevelStyleControls = (props) => {
+  var currentStyle = props.editorState.getCurrentInlineStyle();
+  return (
+    <div className="RichEditor-controls">
+     <FontAwesomeIcon icon={faSave}  />
     </div>
   );
 };

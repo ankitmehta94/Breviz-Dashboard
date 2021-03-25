@@ -1,7 +1,7 @@
 
 import './Content.css';
 import {Component} from 'react';
-import Title from './Components/Title/Title.jsx';
+
 import SummaryList from './Components/SummaryList/SummaryList.jsx';
 import EditSummary from './Components/EditSummary/EditSummary.jsx';
 
@@ -47,13 +47,16 @@ class Content extends Component{
       })
     }),1000)
   }
+  navigateTo = () => {
+
+  }
   render(){
     const ContentComponent = this.state.mainContent;
     // const IncomingComponent = this.state.incomingComponent;
     // console.log(IncomingComponent)
     return (
       <div className="content">
-          <Title titleText={this.state.titleText}/>
+        
           {/* <IncomingComponent isVisible={this.state.incomingVisible} /> */}
      <ContentComponent changeContent={this.changeMainContent} isVisible={this.state.mainVisible} />
       </div>
