@@ -1,65 +1,65 @@
+import "./Content.css";
+import { Component } from "react";
 
-import './Content.css';
-import {Component} from 'react';
-
-import SummaryList from './Components/SummaryList/SummaryList.jsx';
-import EditSummary from './Components/EditSummary/EditSummary.jsx';
+import SummaryList from "./Components/SummaryList/SummaryList.jsx";
+import EditSummary from "./Components/EditSummary/EditSummary.jsx";
 
 const setContent = (MainComponent, props) => {
-  class Main extends Component{
-    render(){
-      console.log("here")
-      return (<MainComponent {...props} />);
+  class Main extends Component {
+    render() {
+      console.log("here",props);
+      return <MainComponent {...props} />;
     }
   }
-  return Main
+  return Main;
 };
 
 const contentDictionary = {
-  'summaryList':  SummaryList,
-  'editSummary': EditSummary
-}
-class Content extends Component{
+  summaryList: SummaryList,
+  editSummary: EditSummary,
+};
+class Content extends Component {
   state = {
-    incomingComponent:() => null,
+    incomingComponent: () => null,
     mainContent: SummaryList,
-    titleText:'SUMMARIES',
+    titleText: "SUMMARIES",
     contentProps: {},
-    mainVisible:true,
+    mainVisible: true,
     incomingVisible: false,
-  }
-  changeMainContent = (contentId, contentProps)=>{
-    console.log(contentId,contentProps)
-    const mainContent = setContent(contentDictionary[contentId],contentProps);
+  };
+  changeMainContent = (contentId, contentProps) => {
+    console.log(contentId, contentProps);
+    const mainContent = setContent(contentDictionary[contentId], {...contentProps,changeContent:this.changeMainContent, isVisible:this.state.mainVisible });
     // const incomingComponent = setContent(incomingComponent,{})
-    console.log(mainContent,'<-----------------mainContent')
+    console.log(mainContent, "<-----------------mainContent");
     this.setState({
       titleText: contentProps.titleText,
-      mainVisible:false,
+      mainVisible: false,
       incomingVisible: false,
-    })
-    setTimeout((() => {
+    },() => {
       this.setState({
         mainContent: mainContent,
         // incomingComponent: incomingComponent,
-        mainVisible:true,
+        mainVisible: true,
         incomingVisible: false,
-      })
-    }),1000)
-  }
-  navigateTo = () => {
-
-  }
-  render(){
+      });
+    });
+  };
+  navigateTo = () => {};
+  render() {
     const ContentComponent = this.state.mainContent;
     // const IncomingComponent = this.state.incomingComponent;
     // console.log(IncomingComponent)
     return (
-      <div className="content">
-        
+      <main>
+        <div className="main_container">
           {/* <IncomingComponent isVisible={this.state.incomingVisible} /> */}
-     <ContentComponent changeContent={this.changeMainContent} isVisible={this.state.mainVisible} />
-      </div>
+          <ContentComponent
+            changeContent={this.changeMainContent}
+            isVisible={this.state.mainVisible}
+          />
+        </div>
+      </main>
     );
   }
 }

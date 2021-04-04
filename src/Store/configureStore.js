@@ -1,17 +1,17 @@
 import { createStore, compose, applyMiddleware } from 'redux';
-// import reduxThunk from 'redux-thunk';
+import reduxThunk from 'redux-thunk';
 import createReducer from './rootReducer';
 
-// import api from '../assets/js/utils/Api';
+import api from '../Utilities/Api';
 
-// const middlewares = [
-//   reduxThunk.withExtraArgument({api}),
-// ];
+const middlewares = [
+  reduxThunk.withExtraArgument({api}),
+];
 
 const __BROWSER__ = typeof window!=="undefined";
 
 const storeEnhancers = [
-  // applyMiddleware(...middlewares),
+  applyMiddleware(...middlewares),
   __BROWSER__  && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__() : (f) => f,
 ];
 

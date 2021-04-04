@@ -8,8 +8,10 @@ import {UPDATE_SUMMARY} from '../../../Constants/actionConstants';
   };
   const updateSummaryList = (newSummaryObject) => (dispatch, getState) => {
     const { summaryId, newSummaryText } = newSummaryObject;
-    const {SummaryListObject} = getState();
-    SummaryListObject[summaryId] = newSummaryText;
+    const {SummaryListReducer} = getState();
+    const {SummaryListObject, SummaryKey} = SummaryListReducer
+    console.log(SummaryListObject,'<-----------------SummaryListObject');
+    SummaryListObject[SummaryKey].summaries[summaryId] = {summary: newSummaryText};
     dispatch({
                 type : UPDATE_SUMMARY,
                 payload : SummaryListObject

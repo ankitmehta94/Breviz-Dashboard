@@ -1,1 +1,2 @@
 export const UPDATE_SUMMARY = 'UPDATE_SUMMARY'
+export const SELECT_SUMMARY = 'SELECT_SUMMARY'

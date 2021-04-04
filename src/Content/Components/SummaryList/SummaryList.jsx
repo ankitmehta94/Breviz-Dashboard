@@ -1,7 +1,5 @@
 import "./SummaryList.css";
 import { Component } from "react";
-import Summaries from "../../../Constants/dummySummaries";
-import Transcripts from "../../../Constants/dummyTranscript";
 import { bindActionCreators } from "redux";
 import Title from "../Title/Title.jsx";
 import { connect } from "react-redux";
@@ -9,12 +7,15 @@ import { connect } from "react-redux";
 import { Animated } from "react-animated-css";
 class SummaryList extends Component {
   createList = () => {
-    const { SummaryListObject } = this.props;
-    console.log(SummaryListObject);
-    return Object.keys(SummaryListObject).map((sumKey, sumIndex) => {
-      const sum = SummaryListObject[sumKey];
+    const { SummaryListObject, SummaryKey } = this.props;
+    // console.log(SummaryListObject);
+    const SumObj = SummaryListObject[SummaryKey].summaries
+    console.log(SumObj,'<-----------------SumObj')
+    return Object.keys(SumObj).map((sumKey, sumIndex) => {
+      const sum = SumObj[sumKey];
+      console.log(sum,'<-----------------sumKey')
       let htmlArray = sum.summary.split("\n").map((text, index) => {
-        console.log(text);
+        // console.log(text);
         return (
           <p key={`p-${index}`}>
             {this.createHighlightedHTML(text, sum.summary, sumKey)}
@@ -37,15 +38,17 @@ class SummaryList extends Component {
     });
   };
   createHighlightedHTML = (SummaryText, FullSummary, summaryId) => {
+    const { SummaryListObject, SummaryKey } = this.props;
     const SummarySplit = SummaryText.split(":");
     const dialog = SummarySplit[1];
     const htmlArray = [];
+    const Transcripts = SummaryListObject[SummaryKey].transcript
     if (dialog) {
       const existIndex = Transcripts.toLowerCase()
         .trim()
         .indexOf(dialog.toLowerCase().trim());
       if (existIndex > -1) {
-        console.log(SummaryText, "<-----------------SummaryText");
+        // console.log(SummaryText, "<-----------------SummaryText");
         // console.log(dialog, "<-----------------dialog");
         const startIndex = SummaryText.toLowerCase()
           .trim()
@@ -66,12 +69,16 @@ class SummaryList extends Component {
         htmlArray.push(
           SummaryText.substring(endIndex, SummaryText.length).trim()
         );
+        return (<div className={'oneLine'}>{SummaryText.substring(0, startIndex).trim()}<div className="clickMe" onClick={showEditSummary}>
+        {SummaryText.substring(startIndex, endIndex).trim()}
+      </div>{SummaryText.substring(endIndex, SummaryText.length).trim()}</div>);
       } else {
         return <div>{SummaryText}</div>;
       }
       // console.log(LCS(dialog.toLowerCase().trim(), Transcripts.toLowerCase().trim()))
     }
-    return <p>{htmlArray}</p>;
+    console.log("gydsfbjhwdbcfjhsdbchjbdshc")
+    
   };
   render() {
     const SummaryHTML = this.createList();
@@ -94,10 +101,12 @@ class SummaryList extends Component {
 // };
 const mapStateToProps = (state) => {
   const { SummaryListReducer = {} } = state;
-  console.log(state, "<-----------------state");
+  // console.log(SummaryListReducer, "<-----------------SummaryListReducer");
+  const {SummaryListObject, SummaryKey} = SummaryListReducer
   return {
-    SummaryListObject: SummaryListReducer,
-  };
+    SummaryListObject: SummaryListObject,
+    SummaryKey: SummaryKey
+  }
 };
 const mapDispatchToProps = (dispatch) => ({
   // toggleInstallAppBanner: bindActionCreators(toggleInstallAppBanner, dispatch),
