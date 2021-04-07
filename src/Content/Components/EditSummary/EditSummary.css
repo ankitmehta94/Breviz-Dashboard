@@ -16,3 +16,13 @@
     margin-left: 1%;
     margin-right: 1%;
 }
+.transcriptHighlight{
+        background-color: #abb7b7;
+        width: fit-content;
+        border-radius: 10px;
+        padding: 4px;
+        cursor: pointer;
+}
+.textAreaCss{
+    font-size: larger;
+}

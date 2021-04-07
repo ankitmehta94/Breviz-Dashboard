@@ -1,5 +1,6 @@
 import './EditSummary.css';
 import Title from '../Title/Title.jsx'
+import TranscriptContainer from './TranscriptContainer.jsx'
 import { Animated } from 'react-animated-css'
 import {Component} from 'react';
 import { connect } from "react-redux";
@@ -53,15 +54,20 @@ class EditSummary extends Component{
       console.log("here")
       return (<Animated className={'editSummary'} animationIn="bounceInLeft" animationOut="bounceOutLeft" isVisible={this.props.isVisible}>
             <Title titleText={'EDIT SUMMARY'} navigateTo={this.navigateTo}/>
-          <div className={'transcripDiv'} >{this.props.Transcripts}</div>
-          <textarea value={this.state.textValue} rows={20} onChange={(event) => this.setTextValue(event)}/>
+          <TranscriptContainer Transcripts={this.props.Transcripts} summary={this.state.textValue} clickedText={this.props.clickedText}/>
+          <textarea className={'textAreaCss'} value={this.state.textValue} rows={20} onChange={(event) => this.setTextValue(event)}/>
           {/* <RichEditor SummaryText={this.props.SummaryText} summaryId={this.props.summaryId} onChange={(e)=>{console.log(e)}} /> */}
       </Animated>);
     }
   }
 
   const mapStateToProps = (state) => {
-return {}
+    const { SummaryListReducer = {} } = state;
+    // console.log(SummaryListReducer, "<-----------------SummaryListReducer");
+    const {clickedText} = SummaryListReducer
+    return {
+      clickedText
+    }
   };
   const mapDispatchToProps = (dispatch) => ({
     updateSummaryList: bindActionCreators(SummaryListActions.updateSummaryList, dispatch),

@@ -18,7 +18,7 @@ function NavBar({ sidebarOpen, openSidebar }) {
               {/* <i className="fa fa-clock-o" aria-hidden="true"></i> */}
             </a>
             <a href="#!">
-            <FontAwesomeIcon size="lg" icon={faUserAstronaut}  />
+            <FontAwesomeIcon size="lg" icon={faUserAstronaut}  style={{color:'#3ea175'}}/>
             </a>
           </div>
         </nav>

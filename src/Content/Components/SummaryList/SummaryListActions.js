@@ -1,4 +1,4 @@
-import {UPDATE_SUMMARY} from '../../../Constants/actionConstants';
+import {UPDATE_SUMMARY, CLICKED_TEXT} from '../../../Constants/actionConstants';
   
 //   import {disableLocationActiveState} from './hotelHelperFunctions';
   
@@ -17,7 +17,13 @@ import {UPDATE_SUMMARY} from '../../../Constants/actionConstants';
                 payload : SummaryListObject
             });
   }
-export default { updateSummaryList }
+  const updateClickedText = (clickedText) => (dispatch, getState) => {
+    dispatch({
+                type : CLICKED_TEXT,
+                payload : clickedText
+            });
+  }
+export default { updateClickedText, updateSummaryList }
 //   export const setLocationTitleActive = (locationTitle, isExpanded = false, locationsMap) => (dispatch) => {
 //     try{
 //       let updatedLocationsMap = disableLocationActiveState(locationsMap);

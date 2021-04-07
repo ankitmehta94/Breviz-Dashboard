@@ -52,6 +52,7 @@ class Sidebar extends Component {
           <div className="sidebar__img">
             <img className={'sidebar__logo'} src={logo} alt="logo" />
             <h1>Breviz</h1>
+            <div></div>
           </div>
           <i
             onClick={() => this.closeSidebar()}
