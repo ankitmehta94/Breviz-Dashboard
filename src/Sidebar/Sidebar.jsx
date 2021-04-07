@@ -9,9 +9,10 @@ const { updateSummaryKey } = SidebarActions
 console.log(SidebarActions)
   class MeetingLink extends Component {
     onClick = () => {
-      const {name, onMeetinClick} = this.props;
+      const {name, onMeetinClick, disable} = this.props;
       console.log(name,onMeetinClick,'<-----------------onMeetinClick')
-      onMeetinClick(name)
+      if(!disable)
+        onMeetinClick(name)
      
     }
 render(){
@@ -33,12 +34,13 @@ render(){
 
 class Sidebar extends Component {
   createMeetingList = () => {
-    const { SummaryListObject, SummaryKey, updateSummaryKey } = this.props;
+    const { SummaryListObject, SummaryKey, updateSummaryKey, clickedText } = this.props;
     // console.log(SummaryListObject);
     // const SumObj = SummaryListObject[SummaryKey].summaries
+    const disable = clickedText?true:false
     const htmlArray =  Object.keys(SummaryListObject).map((sumKey, sumIndex) => {
       const active = SummaryKey === sumKey
-      return <MeetingLink name={sumKey} active={active} onMeetinClick={updateSummaryKey}/>
+      return <MeetingLink name={sumKey} active={active} onMeetinClick={updateSummaryKey} disable={disable}/>
     });
     console.log(htmlArray,'<-----------------htmlArray')
     return (<Fragment>{htmlArray}</Fragment>)
@@ -72,10 +74,12 @@ class Sidebar extends Component {
 const mapStateToProps = (state) => {
   const { SummaryListReducer = {} } = state;
   console.log(SummaryListReducer, "<-----------------SummaryListReducer");
-  const {SummaryListObject, SummaryKey} = SummaryListReducer
+  const {SummaryListObject, SummaryKey, clickedText} = SummaryListReducer
   return {
     SummaryListObject: SummaryListObject,
-    SummaryKey: SummaryKey
+    SummaryKey: SummaryKey,
+    clickedText: clickedText,
+
   }
 };
 const mapDispatchToProps = (dispatch) => ({

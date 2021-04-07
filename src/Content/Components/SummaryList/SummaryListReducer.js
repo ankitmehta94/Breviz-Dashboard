@@ -13,6 +13,7 @@ const SummaryListReducer =  (state = initialState, action) => {
       return {
         ...state,    
         SummaryListObject: action.payload,
+        clickedText: '',
       };
     }
     case SELECT_SUMMARY: {
