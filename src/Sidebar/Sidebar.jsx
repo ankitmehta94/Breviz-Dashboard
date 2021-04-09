@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import logo from '../Assets/brelogo.svg'
 import SidebarActions from './SidebarActions'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 const { updateSummaryKey } = SidebarActions
 console.log(SidebarActions)
   class MeetingLink extends Component {
@@ -47,21 +49,17 @@ class Sidebar extends Component {
   }
   render(){
     const Meetings = this.createMeetingList()
-    console.log('Meetings')
+    console.log('Meetings');
+    console.log(this.props.sidebarOpen,'<-----------------this.sidebarOpen')
     return (
-      <div className={this.sidebarOpen ? "sidebar_responsive" : ""} id="sidebar">
+      <div className={this.props.sidebarOpen ? "sidebar_responsive" : ""} id="sidebar">
         <div className="sidebar__title">
           <div className="sidebar__img">
             <img className={'sidebar__logo'} src={logo} alt="logo" />
             <h1>Breviz</h1>
             <div></div>
+            <div className={'sidebar_cross'}>  <FontAwesomeIcon size="lg" icon={faTimes}  style={{color:'#3ea175'}} onClick={this.props.closeSidebar}/></div>
           </div>
-          <i
-            onClick={() => this.closeSidebar()}
-            className="fa fa-times"
-            id="sidebarIcon"
-            aria-hidden="true"
-          ></i>
         </div>
   
         <div className="sidebar__menu">

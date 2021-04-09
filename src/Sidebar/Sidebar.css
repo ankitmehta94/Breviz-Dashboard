@@ -96,6 +96,7 @@
   display: inline !important;
   z-index: 9999 !important;
   left: 0 !important;
+  height: inherit;
   position: absolute;
 }
 
@@ -105,6 +106,20 @@
   }
 
   .sidebar__title > i {
+    display: inline;
+  }
+  .sidebar_cross {
+    display: inline;
+  }
+}
+
+.sidebar_cross{
+  display: none;
+}
+  
+
+@media only screen and (max-width: 480px) {
+  .sidebar_cross {
     display: inline;
   }
 }

@@ -1,12 +1,12 @@
 
 import './NavBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserAstronaut } from '@fortawesome/free-solid-svg-icons'
+import { faUserAstronaut, faBars } from '@fortawesome/free-solid-svg-icons'
 function NavBar({ sidebarOpen, openSidebar }) {
     return (
         <nav className="navbar">
           <div className="nav_icon" onClick={() => openSidebar()}>
-            <i className="fa fa-bars" aria-hidden="true"></i>
+          <FontAwesomeIcon size="lg" icon={faBars}  style={{color:'#3ea175'}}/>
           </div>
           <div className="navbar__left">
           </div>
