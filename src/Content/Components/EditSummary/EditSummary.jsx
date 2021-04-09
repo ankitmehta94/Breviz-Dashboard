@@ -43,17 +43,22 @@ class EditSummary extends Component{
     })
   }
   navigateTo = () => {
+    const {changeContent, summaryId, updateSummaryList, updateActionItems} = this.props;
     console.log(this.props,'<-----------------this.props.changeContent')
-    this.props.changeContent('summaryList',{})
-    this.props.updateSummaryList({
-      summaryId: this.props.summaryId,
-      newSummaryText: this.state.textValue
-    })
+    changeContent('summaryList',{})
+    if(summaryId !== 'actionItems'){
+      updateSummaryList({
+        summaryId: summaryId,
+        newSummaryText: this.state.textValue
+      })
+    }else{
+      updateActionItems(this.state.textValue)
+    }
   }
     render(){
       console.log("here")
       return (<Animated className={'editSummary'} animationIn="bounceInLeft" animationOut="bounceOutLeft" isVisible={this.props.isVisible}>
-            <Title titleText={'EDIT SUMMARY'} navigateTo={this.navigateTo}/>
+            <Title titleText={this.props.titleText} navigateTo={this.navigateTo}/>
           <TranscriptContainer Transcripts={this.props.Transcripts} summary={this.state.textValue} clickedText={this.props.clickedText}/>
           <textarea className={'textAreaCss'} value={this.state.textValue} rows={20} onChange={(event) => this.setTextValue(event)}/>
           {/* <RichEditor SummaryText={this.props.SummaryText} summaryId={this.props.summaryId} onChange={(e)=>{console.log(e)}} /> */}
@@ -71,6 +76,7 @@ class EditSummary extends Component{
   };
   const mapDispatchToProps = (dispatch) => ({
     updateSummaryList: bindActionCreators(SummaryListActions.updateSummaryList, dispatch),
+    updateActionItems: bindActionCreators(SummaryListActions.updateActionItems, dispatch),
   });
   
   export default connect(mapStateToProps, mapDispatchToProps)(EditSummary);

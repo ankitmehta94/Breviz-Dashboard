@@ -36,8 +36,8 @@ class Agenda extends Component {
     if (this.state.editAgenda) {
       return (
         <Fragment>
-          <div className={"iconDiv"}>
-            <FontAwesomeIcon icon={faSave} onClick={this.saveAgenda} />
+          <div className={"iconDiv"} onClick={this.saveAgenda}>
+            <FontAwesomeIcon icon={faSave} onClick={this.saveAgenda} /> Save
           </div>
           <textarea
             className={"textAreaCss"}
@@ -55,7 +55,7 @@ class Agenda extends Component {
     return this.state.textValue ? (
       <div className={"cellList"}>
         <div className={"iconDiv"}>
-            <FontAwesomeIcon icon={faEdit} onClick={this.showAgendaEdit} />
+           <div  onClick={this.showAgendaEdit}> <FontAwesomeIcon icon={faEdit} /> Edit</div> 
           </div>
         <div className={"CellLine"}>{this.state.textValue}</div>
       </div>
@@ -76,7 +76,51 @@ class Agenda extends Component {
     );
   }
 }
+class ActionItems extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
 
+    }
+  }
+  getActionItems = () => {
+    const { SummaryListObject, SummaryKey } = this.props;
+    if(SummaryListObject[SummaryKey].actionItems){
+      return SummaryListObject[SummaryKey].actionItems.split('\n').map((line, index) => {
+        return <div>{line}</div>
+      })
+    }
+    return null;
+  };
+  showActionsItemEdit = () => {
+    const { SummaryListObject, SummaryKey, changeContent, updateClickedText } = this.props;
+    changeContent("editSummary", {
+      SummaryText: SummaryListObject[SummaryKey].actionItems || 'Nope',
+      Transcripts: SummaryListObject[SummaryKey].transcript,
+      summaryId: 'actionItems',
+      titleText: "EDIT ACTION ITEMS",
+    });
+    updateClickedText('EDIT ACTION ITEMS');
+  };
+  render(){
+    const actionItems = this.getActionItems()
+    if(actionItems){
+      return (
+        <Fragment>
+            <Title titleText={"ACTION ITEMS"} />
+            <div className={"cellList"}>
+          <div className={"iconDiv"}>
+              <FontAwesomeIcon icon={faEdit} onClick={this.showActionsItemEdit} />Edit
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send To Jira
+            </div>
+          <div className={"CellLine"}>{actionItems}</div>
+        </div>
+        </Fragment>
+      )
+    }
+    return null
+  }
+}
 class SummaryList extends Component {
   createList = () => {
     const { SummaryListObject, SummaryKey } = this.props;
@@ -147,7 +191,7 @@ class SummaryList extends Component {
         return (
           <div className={"oneLine"}>
             {SummaryText.substring(0, startIndex).trim()}
-            <div className="clickMe" onClick={showEditSummary}>
+            <div className="clickMeHighlight" onClick={showEditSummary}>
               {SummaryText.substring(startIndex, endIndex).trim()}
             </div>
             {SummaryText.substring(endIndex, SummaryText.length).trim()}
@@ -166,6 +210,7 @@ class SummaryList extends Component {
   render() {
     const SummaryHTML = this.createList();
     const agenda = this.getAgenda();
+    const { SummaryListObject, SummaryKey, changeContent,updateClickedText } = this.props;
     return (
       <Animated
         className={"summaryList"}
@@ -176,6 +221,7 @@ class SummaryList extends Component {
         <Agenda Agenda={agenda} updateAgenda={this.props.updateAgenda} />
         <Title titleText={"SUMMARIES"} />
         <div className={"cellList"}>{SummaryHTML}</div>
+        <ActionItems changeContent={changeContent} SummaryListObject={SummaryListObject} SummaryKey={SummaryKey} updateClickedText={updateClickedText}/>
       </Animated>
     );
   }

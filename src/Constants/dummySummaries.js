@@ -1,9 +1,9 @@
 const Summaries = {
-  'Emma and Anthony Digital Marketing':{
+  'Emma and Anthony: Digital Marketing':{
     summaries:{
       'summary1':{
         summary: `Emma: Yes, I did email and social that's why.
-        Anthony: We go. Brandon wanted to work on social also so he's with you on that one okay Pearson and I are going to Work on mobile emerging we're definitely going to talk about podcasts for that, because it's a starting from that. I'm doing search because I already did some analytics stuff in the past and. that's mentioned as part of that, but I also don't know that much about search, so I want to kind of learn about it.`,
+        Anthony: We go. Brandon wanted to work on social also so he's with you on that one. Okay Pearson and I are going to work on mobile emerging we're definitely going to talk about podcasts for that, because it's a starting from that. I'm doing search because I already did some analytics stuff in the past and. that's mentioned as part of that, but I also don't know that much about search, so I want to kind of learn about it.`,
       },
       'summary2': {
         summary: `Emma: yeah I mean like I feel like for me an email and social I've done it before, but I also feel that. There's a lot that's different here in the US, and I would just kind of like to get that perspective.
@@ -13,6 +13,9 @@ const Summaries = {
             `,
       },
     },
+    actionItems : `Emma: I am doing search
+  Brendan: He is doing social
+  Anthony and Pearson: Going to work on Mobile emerging and talk about podcasts`,
     transcript:`00:00:00.960 --> 00:00:07.020
     Anthony: Okay, so they like the idea like I said the having a split it up with two people.
     00:00:08.220 --> 00:00:14.460

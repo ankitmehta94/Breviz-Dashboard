@@ -6,6 +6,16 @@ import {UPDATE_SUMMARY, CLICKED_TEXT, UPDATE_AGENDA} from '../../../Constants/ac
     if (hasPayload) return payload => ({ type: key, payload: payload });
     return () => ({ type: key });
   };
+  const updateActionItems = (newActionItems) => (dispatch, getState) => {
+    const {SummaryListReducer} = getState();
+    const {SummaryListObject, SummaryKey} = SummaryListReducer
+    SummaryListObject[SummaryKey].actionItems = newActionItems
+    console.log(SummaryListObject,'<-----------------SummaryListObject Me');
+    dispatch({
+                type : UPDATE_SUMMARY,
+                payload : SummaryListObject
+            });
+  }
   const updateSummaryList = (newSummaryObject) => (dispatch, getState) => {
     const { summaryId, newSummaryText } = newSummaryObject;
     const {SummaryListReducer} = getState();
@@ -33,7 +43,7 @@ import {UPDATE_SUMMARY, CLICKED_TEXT, UPDATE_AGENDA} from '../../../Constants/ac
             });
   }
 
-const Actions = { updateClickedText, updateSummaryList, updateAgenda }
+const Actions = { updateClickedText, updateSummaryList, updateAgenda, updateActionItems }
 export default Actions
 //   export const setLocationTitleActive = (locationTitle, isExpanded = false, locationsMap) => (dispatch) => {
 //     try{
