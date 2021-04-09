@@ -1,5 +1,5 @@
 const Summaries = {
-  'Emma and Anothony Digital Marketing':{
+  'Emma and Anthony Digital Marketing':{
     summaries:{
       'summary1':{
         summary: `Emma: Yes, I did email and social that's why.

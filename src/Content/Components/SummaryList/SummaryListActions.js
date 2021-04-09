@@ -1,4 +1,4 @@
-import {UPDATE_SUMMARY, CLICKED_TEXT} from '../../../Constants/actionConstants';
+import {UPDATE_SUMMARY, CLICKED_TEXT, UPDATE_AGENDA} from '../../../Constants/actionConstants';
   
 //   import {disableLocationActiveState} from './hotelHelperFunctions';
   
@@ -23,7 +23,18 @@ import {UPDATE_SUMMARY, CLICKED_TEXT} from '../../../Constants/actionConstants';
                 payload : clickedText
             });
   }
-export default { updateClickedText, updateSummaryList }
+  const updateAgenda = (AgendaText) => (dispatch, getState) => {
+       const {SummaryListReducer} = getState();
+    const {SummaryListObject, SummaryKey} = SummaryListReducer
+    SummaryListObject[SummaryKey].agenda = AgendaText
+    dispatch({
+                type : UPDATE_AGENDA,
+                payload : AgendaText
+            });
+  }
+
+const Actions = { updateClickedText, updateSummaryList, updateAgenda }
+export default Actions
 //   export const setLocationTitleActive = (locationTitle, isExpanded = false, locationsMap) => (dispatch) => {
 //     try{
 //       let updatedLocationsMap = disableLocationActiveState(locationsMap);
