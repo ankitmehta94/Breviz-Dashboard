@@ -126,10 +126,10 @@ class SummaryList extends Component {
     const { SummaryListObject, SummaryKey } = this.props;
     // console.log(SummaryListObject);
     const SumObj = SummaryListObject[SummaryKey].summaries;
-    console.log(SumObj, "<-----------------SumObj");
+    // console.log(SumObj, "<-----------------SumObj");
     return Object.keys(SumObj).map((sumKey, sumIndex) => {
       const sum = SumObj[sumKey];
-      console.log(sum, "<-----------------sumKey");
+      // console.log(sum, "<-----------------sumKey");
       let htmlArray = sum.summary.split("\n").map((text, index) => {
         // console.log(text);
         return (
@@ -157,51 +157,56 @@ class SummaryList extends Component {
   createHighlightedHTML = (SummaryText, FullSummary, summaryId) => {
     const { SummaryListObject, SummaryKey } = this.props;
     const SummarySplit = SummaryText.split(":");
-    const dialog = SummarySplit[1];
+    const dialog = SummarySplit[1]?SummarySplit[1]:SummaryText;
+    const personName = SummarySplit[1]?SummarySplit[0]:'';
     const htmlArray = [];
     const Transcripts = SummaryListObject[SummaryKey].transcript;
-    if (dialog) {
+    // if (dialog) {
       const existIndex = Transcripts.toLowerCase()
         .trim()
         .indexOf(dialog.toLowerCase().trim());
       if (existIndex > -1) {
-        // console.log(SummaryText, "<-----------------SummaryText");
+        console.log(SummaryText, "<-----------------SummaryText");
         // console.log(dialog, "<-----------------dialog");
         const startIndex = SummaryText.toLowerCase()
           .trim()
-          .indexOf(dialog.toLowerCase().trim());
-        // console.log(startIndex,'<-----------------startIndex',SummaryText.substring(0, startIndex))
+          .indexOf(dialog.toLowerCase().trim())//+personName.length;
+        console.log(startIndex,'<-----------------startIndex',SummaryText.trim().substring(0, startIndex))
         const length = dialog.toLowerCase().trim().length;
         const endIndex = startIndex + length;
 
         // console.log(endIndex,'<-----------------endIndex',SummaryText.substring(startIndex, endIndex))
         // console.log(length,'<-----------------length',SummaryText.substring(endIndex, SummaryText.length))
-        htmlArray.push(SummaryText.substring(0, startIndex).trim());
-        const middleText = SummaryText.substring(startIndex, endIndex).trim();
+        // htmlArray.push(SummaryText.substring(0, startIndex).trim());
+        const middleText = SummaryText.trim().substring(startIndex, endIndex)
         const showEditSummary = () =>
           this.showEditSummary(FullSummary, Transcripts, summaryId, middleText);
-        htmlArray.push(
-          <div className="clickMe" onClick={showEditSummary}>
-            {middleText}
-          </div>
-        );
-        htmlArray.push(
-          SummaryText.substring(endIndex, SummaryText.length).trim()
-        );
-        return (
-          <div className={"oneLine"}>
-            {SummaryText.substring(0, startIndex).trim()}
-            <div className="clickMeHighlight" onClick={showEditSummary}>
-              {SummaryText.substring(startIndex, endIndex).trim()}
+        // htmlArray.push(
+        //   <div className="clickMe" onClick={showEditSummary}>
+        //     {middleText}
+        //   </div>
+        // );
+        // htmlArray.push(
+        //   SummaryText.substring(endIndex, SummaryText.length).trim()
+        // );
+
+        if(middleText){
+          return (
+            <div className={"oneLine"}>
+              {/* {personName?personName+': ':''} */}
+              {SummaryText.trim().substring(0, startIndex)}
+              <div className="clickMe" onClick={showEditSummary}>
+                {SummaryText.trim().substring(startIndex, endIndex)}
+              </div>
+              {SummaryText.trim().substring(endIndex, SummaryText.length)}
             </div>
-            {SummaryText.substring(endIndex, SummaryText.length).trim()}
-          </div>
-        );
+          );
+        }
       } else {
         return <div>{SummaryText}</div>;
       }
       // console.log(LCS(dialog.toLowerCase().trim(), Transcripts.toLowerCase().trim()))
-    }
+    // }
   };
   getAgenda = () => {
     const { SummaryListObject, SummaryKey } = this.props;
