@@ -1,4 +1,4 @@
-import {UPDATE_SUMMARY, CLICKED_TEXT, UPDATE_AGENDA} from '../../../Constants/actionConstants';
+import {UPDATE_SUMMARY, CLICKED_TEXT, UPDATE_AGENDA} from '../../Constants/actionConstants';
   
 //   import {disableLocationActiveState} from './hotelHelperFunctions';
   

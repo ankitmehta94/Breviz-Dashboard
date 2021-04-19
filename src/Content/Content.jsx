@@ -1,8 +1,8 @@
 import "./Content.css";
 import { Component } from "react";
 
-import SummaryList from "./Components/SummaryList/SummaryList.jsx";
-import EditSummary from "./Components/EditSummary/EditSummary.jsx";
+import SummaryList from "../Components/SummaryList/SummaryList.jsx";
+import EditSummary from "../Components/EditSummary/EditSummary.jsx";
 
 const setContent = (MainComponent, props) => {
   class Main extends Component {

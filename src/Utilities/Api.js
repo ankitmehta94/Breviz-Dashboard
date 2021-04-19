@@ -1,17 +1,18 @@
 import fetch from 'isomorphic-fetch';
 import queryString from 'query-string';
-const BASE_URL = '/mapi/mweb';
+const BASE_URL = 'http://3.90.169.202/';
 const CONSUMER = '/consumer';
 const TEST_URL = '/test/token';
 
 
 const fireRequest = async (method, url, data) => {
   let fullUrl = url;
-  if(typeof fullUrl === "string" && fullUrl.indexOf(BASE_URL) < 0 && fullUrl.indexOf(CONSUMER) < 0 ){
+  if(typeof fullUrl === "string" && fullUrl.indexOf(BASE_URL)){
     if(fullUrl.indexOf(TEST_URL) < 0){
       fullUrl = `${BASE_URL}${fullUrl}`;
     }
   }
+  console.log(fullUrl,'<-----------------next')
   let token = '';
   const options = {
     method,

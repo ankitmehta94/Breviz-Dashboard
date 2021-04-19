@@ -1,5 +1,5 @@
-import Summaries from '../../../Constants/dummySummaries';
-import {UPDATE_SUMMARY, SELECT_SUMMARY, CLICKED_TEXT} from '../../../Constants/actionConstants';
+import Summaries from '../../Constants/dummySummaries';
+import {UPDATE_SUMMARY, SELECT_SUMMARY, CLICKED_TEXT} from '../../Constants/actionConstants';
 
 const initialState = {
     SummaryListObject: Summaries,
