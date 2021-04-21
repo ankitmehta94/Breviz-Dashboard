@@ -1,24 +1,24 @@
 
-import './NavBar.css';
+import style from './NavBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserAstronaut, faBars } from '@fortawesome/free-solid-svg-icons'
 function NavBar({ sidebarOpen, openSidebar }) {
     return (
-        <nav className="navbar">
-          <div className="nav_icon" onClick={() => openSidebar()}>
-          <FontAwesomeIcon size="lg" icon={faBars}  style={{color:'#3ea175'}}/>
+        <nav className={style['navbar']}>
+          <div className={style['nav_icon']} onClick={() => openSidebar()}>
+          <FontAwesomeIcon size="lg" icon={faBars}  style={{color:'#2568c3'}}/>
           </div>
-          <div className="navbar__left">
+          <div className={style['navbar__left']}>
           </div>
-          <div className="navbar__right">
+          <div className={style['navbar__right']}>
             <a href="#">
-              {/* <i className="fa fa-search" aria-hidden="true"></i> */}
+              {/* <i className={style['fa fa-search" aria-hidden="true"></i> */}
             </a>
             <a href="#">
-              {/* <i className="fa fa-clock-o" aria-hidden="true"></i> */}
+              {/* <i className={style['fa fa-clock-o" aria-hidden="true"></i> */}
             </a>
             <a href="#!">
-            <FontAwesomeIcon size="lg" icon={faUserAstronaut}  style={{color:'#3ea175'}}/>
+            <FontAwesomeIcon size="lg" icon={faUserAstronaut}  style={{color:'#2568c3'}}/>
             </a>
           </div>
         </nav>

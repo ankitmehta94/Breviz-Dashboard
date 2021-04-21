@@ -1,5 +1,5 @@
 
-import './Sidebar.css';
+import style from './Sidebar.css';
 import { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -7,6 +7,7 @@ import logo from '../Assets/brelogo.svg'
 import SidebarActions from './SidebarActions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import classNames from '../Utilities/classNameUtil'
 const { updateSummaryKey } = SidebarActions
 console.log(SidebarActions)
   class MeetingLink extends Component {
@@ -21,11 +22,11 @@ render(){
   const {name, active} = this.props;
   let activeClass = '';
   if(active){
-    activeClass = ' active_menu_link'
+    activeClass = 'active_menu_link'
   }
-
+  console.log(style,'<-----------------style')
   return (
-    <div className={"sidebar__link"+activeClass}>
+    <div className={classNames([style["sidebar__link"],style[activeClass]])}>
     <i className="fa fa-home"></i>
     <a href="#" onClick={this.onClick}>{name}</a>
   </div>
@@ -51,18 +52,19 @@ class Sidebar extends Component {
     const Meetings = this.createMeetingList()
     console.log('Meetings');
     console.log(this.props.sidebarOpen,'<-----------------this.sidebarOpen')
+    const responsiveClass = this.props.sidebarOpen?'sidebar_responsive':''
     return (
-      <div className={this.props.sidebarOpen ? "sidebar_responsive" : ""} id="sidebar">
-        <div className="sidebar__title">
-          <div className="sidebar__img">
-            <img className={'sidebar__logo'} src={logo} alt="logo" />
+      <div className={classNames([style[responsiveClass],style["sidebar"]])} >
+        <div className={style['sidebar__title']}>
+          <div className={style['sidebar__img']}>
+            <img className={style['sidebar__logo']} src={logo} alt="logo" />
             <h1>Breviz</h1>
             <div></div>
-            <div className={'sidebar_cross'}>  <FontAwesomeIcon size="lg" icon={faTimes}  style={{color:'#3ea175'}} onClick={this.props.closeSidebar}/></div>
+            <div className={style['sidebar_cross']}>  <FontAwesomeIcon size="lg" icon={faTimes}  style={{color:'#2568c3'}} onClick={this.props.closeSidebar}/></div>
           </div>
         </div>
   
-        <div className="sidebar__menu">
+        <div className={style["sidebar__menu"]}>
       {Meetings}
         </div>
       </div>)

@@ -1,5 +1,5 @@
 
-import './App.css';
+import style from './App.css';
 import { Provider } from 'react-redux';
 import { useState, Component } from "react";
 import configureStore from './Store/configureStore';
@@ -11,7 +11,7 @@ import {
   Link
 } from "react-router-dom";
 import Content from './Content/Content.jsx'
-import UploadTranscript from './Components/UploadTranscript/UploadTranscript.jsx'
+// import UploadTranscript from './Components/UploadTranscript/UploadTranscript.jsx'
 import SitePage from './Components/SitePage/SitePage.jsx'
 import Sidebar from './Sidebar/Sidebar.jsx'
 import NavBar from './NavBar/NavBar.jsx'
@@ -37,7 +37,7 @@ function Container() {
   };
   return (
     <Provider store={store}>
-   <div className="container">
+   <div className={style["container"]}>
       <NavBar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
       <Content />
       <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />

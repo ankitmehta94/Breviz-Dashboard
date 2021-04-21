@@ -1,4 +1,4 @@
-import "./Content.css";
+import style from "./Content.css";
 import { Component } from "react";
 
 import SummaryList from "../Components/SummaryList/SummaryList.jsx";
@@ -51,8 +51,8 @@ class Content extends Component {
     // const IncomingComponent = this.state.incomingComponent;
     // console.log(IncomingComponent)
     return (
-      <main>
-        <div className="main_container">
+      <main className={style['mainDiv']}>
+        <div className={style["main_container"]}>
           {/* <IncomingComponent isVisible={this.state.incomingVisible} /> */}
           <ContentComponent
             changeContent={this.changeMainContent}

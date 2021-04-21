@@ -1,4 +1,4 @@
-import "./SummaryList.css";
+import style from "./SummaryList.css";
 import { Component, Fragment } from "react";
 import { bindActionCreators } from "redux";
 import Title from "../Title/Title.jsx";
@@ -36,11 +36,11 @@ class Agenda extends Component {
     if (this.state.editAgenda) {
       return (
         <Fragment>
-          <div className={"iconDiv"} onClick={this.saveAgenda}>
+          <div className={style["iconDiv"]} onClick={this.saveAgenda}>
             <FontAwesomeIcon icon={faSave} onClick={this.saveAgenda} /> Save
           </div>
           <textarea
-            className={"textAreaCss"}
+            className={style["textAreaCss"]}
             value={this.state.textValue}
             rows={10}
             onChange={(event) => this.setTextValue(event)}
@@ -53,14 +53,14 @@ class Agenda extends Component {
   };
   getAgendaDiv = () => {
     return this.state.textValue ? (
-      <div className={"cellList"}>
-        <div className={"iconDiv"}>
+      <div className={style["cellList"]}>
+        <div className={style["iconDiv"]}>
            <div  onClick={this.showAgendaEdit}> <FontAwesomeIcon icon={faEdit} /> Edit</div> 
           </div>
-        <div className={"CellLine"}>{this.state.textValue}</div>
+        <div className={style["CellLine"]}>{this.state.textValue}</div>
       </div>
     ) : (
-      <div className={"noAgendaDiv"} onClick={this.showAgendaEdit}>
+      <div className={style["noAgendaDiv"]} onClick={this.showAgendaEdit}>
         No Agenda Found. Click Here to add Agenda
       </div>
     );
@@ -108,12 +108,12 @@ class ActionItems extends Component {
       return (
         <Fragment>
             <Title titleText={"ACTION ITEMS"} />
-            <div className={"cellList"}>
-          <div className={"iconDiv"}>
+            <div className={style["cellList"]}>
+          <div className={style["iconDiv"]}>
               <FontAwesomeIcon icon={faEdit} onClick={this.showActionsItemEdit} />Edit
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send To Jira
             </div>
-          <div className={"CellLine"}>{actionItems}</div>
+          <div className={style["CellLine"]}>{actionItems}</div>
         </div>
         </Fragment>
       )
@@ -139,7 +139,7 @@ class SummaryList extends Component {
         );
       });
       return (
-        <div className={"CellLine"} key={`sumIndex-${sumIndex}`}>
+        <div className={style["CellLine"]} key={`sumIndex-${sumIndex}`}>
           {htmlArray}
         </div>
       );
@@ -192,10 +192,10 @@ class SummaryList extends Component {
 
         if(middleText){
           return (
-            <div className={"oneLine"}>
+            <div className={style["oneLine"]}>
               {/* {personName?personName+': ':''} */}
               {SummaryText.trim().substring(0, startIndex)}
-              <div className="clickMe" onClick={showEditSummary}>
+              <div className={style["clickMe"]} onClick={showEditSummary}>
                 {SummaryText.trim().substring(startIndex, endIndex)}
               </div>
               {SummaryText.trim().substring(endIndex, SummaryText.length)}
@@ -218,14 +218,14 @@ class SummaryList extends Component {
     const { SummaryListObject, SummaryKey, changeContent,updateClickedText } = this.props;
     return (
       <Animated
-        className={"summaryList"}
+        className={style["summaryList"]}
         animationIn="bounceInLeft"
         animationOut="bounceOutLeft"
         isVisible={this.props.isVisible}
       >
         <Agenda Agenda={agenda} updateAgenda={this.props.updateAgenda} />
         <Title titleText={"SUMMARIES"} />
-        <div className={"cellList"}>{SummaryHTML}</div>
+        <div className={style["cellList"]}>{SummaryHTML}</div>
         <ActionItems changeContent={changeContent} SummaryListObject={SummaryListObject} SummaryKey={SummaryKey} updateClickedText={updateClickedText}/>
       </Animated>
     );

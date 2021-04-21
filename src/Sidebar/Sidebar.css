@@ -1,4 +1,4 @@
-#sidebar {
+.sidebar {
   background: #020509;
   grid-area: sidebar;
   overflow-y: auto;
@@ -40,7 +40,7 @@
 }
 
 .sidebar__menu > h2 {
-  color: #3ea175;
+  color: #2568c3;
   font-size: 16px;
   margin-top: 15px;
   margin-bottom: 5px;
@@ -56,12 +56,12 @@
 }
 
 .active_menu_link {
-  background: rgba(62, 161, 117, 0.3);
-  color: #3ea175;
+  background:#2f2f44;
+  color: #2568c3;
 }
 
 .active_menu_link a {
-  color: #3ea175 !important;
+  color: #2568c3 !important;
 }
 
 .sidebar__link > a {
@@ -101,7 +101,7 @@
 }
 
 @media only screen and (max-width: 978px) {
-  #sidebar {
+  .sidebar {
     display: none;
   }
 

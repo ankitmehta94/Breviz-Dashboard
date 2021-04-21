@@ -1,4 +1,4 @@
-import './EditSummary.css';
+import style from './EditSummary.css';
 import {Component} from 'react';
 
 
@@ -43,20 +43,20 @@ class TranscriptContainer extends Component{
                 let middle = null
                 if(this.props.clickedText ===  dialog.trim()){
                     middle = (
-                        <div className="transcriptHighlight" id={'scrollMe'} >
+                        <div className={style["transcriptHighlight"]} id={'scrollMe'} >
                           {lineText.trim().substring(startIndex, endIndex)}
                         </div>
                       )
                 }else{
                     middle = (
-                        <div className="transcriptHighlight"  >
+                        <div className={style["transcriptHighlight"]}  >
                           {lineText.trim().substring(startIndex, endIndex)}
                         </div>
                       )
                 }
                 const end = lineText.trim().substring(endIndex, summary.length)
                 htmlArray.push(
-                    <div className={'oneLine'}>{begining}{middle}{end}</div>
+                    <div className={style['oneLine']}>{begining}{middle}{end}</div>
                 );
                 htmlArray.push(
                     <br/>
@@ -95,7 +95,7 @@ class TranscriptContainer extends Component{
         console.log(this.props.Transcripts.split('\n'),'<-----------------Transcripts.split')
         const text = this.createHighlightedHTML();
         console.log(text,'<-----------------text')
-     return (<div className={'transcripDiv'} >{text}</div>)
+     return (<div className={style['transcripDiv']} >{text}</div>)
     }
   }
 

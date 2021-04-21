@@ -1,4 +1,4 @@
-import './EditSummary.css';
+import style from './EditSummary.css';
 import Title from '../Title/Title.jsx'
 import TranscriptContainer from './TranscriptContainer.jsx'
 import { Animated } from 'react-animated-css'
@@ -8,20 +8,6 @@ import { bindActionCreators } from "redux";
 import SummaryListActions from '../SummaryList/SummaryListActions'
 console.log(SummaryListActions,'<-----------------SummaryListActions')
 
-// import RichEditor from '../RichEditor/RichEditor'
-// import {
-//   ContentState,
-//   EditorState,
-//   // convertFromHTML as convertFromHTMLClassic,
-//   // convertToRaw,
-//   // convertFromRaw,
-// } from 'draft-js';
-// import convertFromHTMLModern from 'draft-js/lib/convertFromHTMLToContentBlocks';
-// import gkx from 'draft-js/lib/gkx';
-// import {convertToHTML} from 'draft-convert';
-// const fromHTML = gkx('draft_refactored_html_importer')
-//   ? convertFromHTMLModern
-//   : convertFromHTMLClassic;
 
 
 
@@ -57,10 +43,10 @@ class EditSummary extends Component{
   }
     render(){
       console.log("here")
-      return (<Animated className={'editSummary'} animationIn="bounceInLeft" animationOut="bounceOutLeft" isVisible={this.props.isVisible}>
+      return (<Animated className={style['editSummary']} animationIn="bounceInLeft" animationOut="bounceOutLeft" isVisible={this.props.isVisible}>
             <Title titleText={this.props.titleText} navigateTo={this.navigateTo}/>
           <TranscriptContainer Transcripts={this.props.Transcripts} summary={this.state.textValue} clickedText={this.props.clickedText}/>
-          <textarea className={'textAreaCss'} value={this.state.textValue} rows={20} onChange={(event) => this.setTextValue(event)}/>
+          <textarea className={style['textAreaCss']} value={this.state.textValue} rows={15} onChange={(event) => this.setTextValue(event)}/>
           {/* <RichEditor SummaryText={this.props.SummaryText} summaryId={this.props.summaryId} onChange={(e)=>{console.log(e)}} /> */}
       </Animated>);
     }
