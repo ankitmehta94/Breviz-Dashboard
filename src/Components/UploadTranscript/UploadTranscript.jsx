@@ -119,6 +119,7 @@ const mapDispatchToProps = (dispatch) => ({
     UploadActions.sendAndSetTranscriptJSON,
     dispatch
   ),
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UploadTranscript);

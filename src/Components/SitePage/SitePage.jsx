@@ -1,12 +1,15 @@
 import "./dist/css/style.css";
-import BrevizLogo from './dist/images/brelogo.svg';
+import BrevizLogo from "./dist/images/brelogo.svg";
+import EA from "./dist/images/ea.svg";
+import Coder from "./dist/images/coder.svg";
+import Earnings from "./dist/images/earnings.svg";
 import { Animated } from "react-animated-css";
 import { Component } from "react";
 import { connect } from "react-redux";
+import UploadActions from '../UploadTranscript/UploadActions'
 import { bindActionCreators } from "redux";
 
-
-
+console.log(UploadActions,'<-----------------UploadActions')
 class SitePage extends Component {
   constructor(props) {
     super(props);
@@ -29,6 +32,14 @@ class SitePage extends Component {
     const { sendAndSetTranscriptJSON } = this.props;
     await sendAndSetTranscriptJSON([]);
   };
+ readFileContent = (file) => {
+	const reader = new FileReader()
+  return new Promise((resolve, reject) => {
+    reader.onload = event => resolve(event.target.result)
+    reader.onerror = error => reject(error)
+    reader.readAsText(file)
+  })
+}
   navigateTo = () => {
     const {
       changeContent,
@@ -47,44 +58,66 @@ class SitePage extends Component {
       updateActionItems(this.state.textValue);
     }
   };
+  sendOtterTranscript = async (event) => {
+    const input = event.target
+    const { sendTranscriptText } = this.props;
+   const text =  await this.readFileContent(input.files[0])
+   console.log(text)
+   await sendTranscriptText(text,'otter')
+  }
+  sendZoomTranscript = async (event) => {
+    const input = event.target
+    const { sendTranscriptText } = this.props;
+   const text =  await this.readFileContent(input.files[0])
+   console.log(text)
+   await sendTranscriptText(text,'zoomOtter')
+  }
   render() {
     const { buttonOutterClass } = this.state;
     console.log("here");
     return (
-        <div class="is-boxed has-animations">
+      <div class="is-boxed has-animations bodyTag">
         <div class="body-wrap">
           <header class="site-header">
-            <div class="container">
+            <div class="containStatic">
               <div class="site-header-inner">
                 <div class="brand header-brand">
                   <h1 class="m-0">
                     <a href="/">
-                      {/* <img
+                      <img
                         class="header-logo-image"
-                        src="BrevizLogo"
+                        src={BrevizLogo}
                         alt="Logo"
-                      /> */}
-                      <BrevizLogo class="header-logo-image"
-                        src="BrevizLogo"
-                        alt="Logo"/>
+                      />
                     </a>
                   </h1>
                 </div>
               </div>
             </div>
           </header>
-    
-          <main>
+
+          <div class={'main'}>
             <section class="hero">
-              <div class="container">
+              <div class="containStatic">
                 <div class="hero-inner">
                   <div class="hero-copy">
-                    <h1 class="hero-title mt-0">Bring Brevity to Your Meetings!</h1>
+                    <h1 class="hero-title mt-0">
+                      Bring Brevity to Your Meetings!
+                    </h1>
                     <p class="hero-paragraph">
-                      A tool to summarize your meetings and make suggestions of what
-                      actions to take after
+                      A tool to summarize your meetings and make suggestions of
+                      what actions to take after
                     </p>
-                    <div class="hero-cta"><a className={"button button-primary"} href="/">Pre order now</a><a className={"button"} href="/">Get in touch</a></div> 
+                    <div class="hero-cta">
+                      <label className={"button button-primary"} >
+                        Upload Zoom Transcript
+                        <input className={'hidden-file-input'} type={'file'} onChange={this.sendZoomTranscript} />
+                      </label>
+                      <label className={"button"} >
+                      Upload Otter Transcript
+                      <input className={'hidden-file-input'} type={'file'} onChange={this.sendOtterTranscript} />
+                      </label>
+                    </div>
                   </div>
                   <div class="hero-figure anime-element">
                     <svg
@@ -93,7 +126,11 @@ class SitePage extends Component {
                       height="396"
                       viewBox="0 0 528 396"
                     >
-                      <rect width="528" height="396" style={{"fill": "transparent"}} />
+                      <rect
+                        width="528"
+                        height="396"
+                        style={{ fill: "transparent" }}
+                      />
                     </svg>
                     <div
                       class="hero-figure-box hero-figure-box-01"
@@ -130,41 +167,43 @@ class SitePage extends Component {
                 </div>
               </div>
             </section>
-    
+
             <section class="features section">
-              <div class="container">
+              <div class="containStatic">
                 <div class="features-inner section-inner has-bottom-divider">
                   <div class="features-wrap">
                     <div class="feature text-center is-revealing">
                       <div class="feature-inner">
                         <div class="feature-icon">
-                          <img src="./dist/images/ea.svg" alt="Feature 01" />
+                          <img src={EA} alt="Feature 01" />
                         </div>
-                        <h4 class="feature-title mt-24">Executive Assistants</h4>
+                        <h4 class="feature-title mt-24">
+                          Executive Assistants
+                        </h4>
                         <p class="text-sm mb-0">
                           Improve your note taking ability, taking notes over
-                          virtual meetings is hard and Breviz is here to help you do
-                          exactly that
+                          virtual meetings is hard and Breviz is here to help
+                          you do exactly that
                         </p>
                       </div>
                     </div>
                     <div class="feature text-center is-revealing">
                       <div class="feature-inner">
                         <div class="feature-icon">
-                          <img src="./dist/images/earnings.svg" alt="Feature 02" />
+                          <img src={Earnings} alt="Feature 02" />
                         </div>
                         <h4 class="feature-title mt-24">Buy Side Analysts</h4>
                         <p class="text-sm mb-0">
-                          Reading/Listening to Earning Calls take too long, the real
-                          information is all over the place. Breviz will make your
-                          life easier
+                          Reading/Listening to Earning Calls take too long, the
+                          real information is all over the place. Breviz will
+                          make your life easier
                         </p>
                       </div>
                     </div>
                     <div class="feature text-center is-revealing">
                       <div class="feature-inner">
                         <div class="feature-icon">
-                          <img src="./dist/images/coder.svg" alt="Feature 03" />
+                          <img src={Coder} alt="Feature 03" />
                         </div>
                         <h4 class="feature-title mt-24">Product Owners</h4>
                         <p class="text-sm mb-0">
@@ -174,16 +213,13 @@ class SitePage extends Component {
                         </p>
                       </div>
                     </div>
-                    
                   </div>
                 </div>
               </div>
             </section>
-    
-        
-    
+
             <section class="cta section">
-              <div class="container">
+              <div class="containStatic">
                 <div class="cta-inner section-inner">
                   <h3 class="section-title mt-0">
                     Are you interested inlearning more about Breviz
@@ -192,16 +228,17 @@ class SitePage extends Component {
                     <a
                       class="button button-primary button-wide-mobile"
                       href="mailto:fastankitmehta@gmail.com"
-                      >Get in touch</a
                     >
+                      Get in touch
+                    </a>
                   </div>
                 </div>
               </div>
             </section>
-          </main>
-    
+          </div>
+
           <footer class="site-footer">
-            <div class="container">
+            <div class="containStatic">
               <div class="site-footer-inner">
                 <div class="brand footer-brand">
                   <a href="/">
@@ -212,7 +249,7 @@ class SitePage extends Component {
                     />
                   </a>
                 </div>
-              {/* <ul class="footer-links list-reset">
+                {/* <ul class="footer-links list-reset">
                             <li>
                                 <a href="#">Contact</a>
                             </li>
@@ -226,32 +263,53 @@ class SitePage extends Component {
                                 <a href="#">Support</a>
                             </li>
                         </ul> */}
-                 <ul class="footer-social-links list-reset">
-                            <li>
-                                <a href="/">
-                                    <span class="screen-reader-text">Facebook</span>
-                                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M6.023 16L6 9H3V6h3V4c0-2.7 1.672-4 4.08-4 1.153 0 2.144.086 2.433.124v2.821h-1.67c-1.31 0-1.563.623-1.563 1.536V6H13l-1 3H9.28v7H6.023z" fill="#0270D7"/>
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/">
-                                    <span class="screen-reader-text">Twitter</span>
-                                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M16 3c-.6.3-1.2.4-1.9.5.7-.4 1.2-1 1.4-1.8-.6.4-1.3.6-2.1.8-.6-.6-1.5-1-2.4-1-1.7 0-3.2 1.5-3.2 3.3 0 .3 0 .5.1.7-2.7-.1-5.2-1.4-6.8-3.4-.3.5-.4 1-.4 1.7 0 1.1.6 2.1 1.5 2.7-.5 0-1-.2-1.5-.4C.7 7.7 1.8 9 3.3 9.3c-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.3 1.6 2.3 3.1 2.3-1.1.9-2.5 1.4-4.1 1.4H0c1.5.9 3.2 1.5 5 1.5 6 0 9.3-5 9.3-9.3v-.4C15 4.3 15.6 3.7 16 3z" fill="#0270D7"/>
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/">
-                                    <span class="screen-reader-text">Google</span>
-                                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M7.9 7v2.4H12c-.2 1-1.2 3-4 3-2.4 0-4.3-2-4.3-4.4 0-2.4 2-4.4 4.3-4.4 1.4 0 2.3.6 2.8 1.1l1.9-1.8C11.5 1.7 9.9 1 8 1 4.1 1 1 4.1 1 8s3.1 7 7 7c4 0 6.7-2.8 6.7-6.8 0-.5 0-.8-.1-1.2H7.9z" fill="#0270D7"/>
-                                    </svg>
-                                </a>
-                            </li>
-                        </ul>
+                <ul class="footer-social-links list-reset">
+                  <li>
+                    <a href="/">
+                      <span class="screen-reader-text">Facebook</span>
+                      <svg
+                        width="16"
+                        height="16"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M6.023 16L6 9H3V6h3V4c0-2.7 1.672-4 4.08-4 1.153 0 2.144.086 2.433.124v2.821h-1.67c-1.31 0-1.563.623-1.563 1.536V6H13l-1 3H9.28v7H6.023z"
+                          fill="#0270D7"
+                        />
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/">
+                      <span class="screen-reader-text">Twitter</span>
+                      <svg
+                        width="16"
+                        height="16"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M16 3c-.6.3-1.2.4-1.9.5.7-.4 1.2-1 1.4-1.8-.6.4-1.3.6-2.1.8-.6-.6-1.5-1-2.4-1-1.7 0-3.2 1.5-3.2 3.3 0 .3 0 .5.1.7-2.7-.1-5.2-1.4-6.8-3.4-.3.5-.4 1-.4 1.7 0 1.1.6 2.1 1.5 2.7-.5 0-1-.2-1.5-.4C.7 7.7 1.8 9 3.3 9.3c-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.3 1.6 2.3 3.1 2.3-1.1.9-2.5 1.4-4.1 1.4H0c1.5.9 3.2 1.5 5 1.5 6 0 9.3-5 9.3-9.3v-.4C15 4.3 15.6 3.7 16 3z"
+                          fill="#0270D7"
+                        />
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/">
+                      <span class="screen-reader-text">Google</span>
+                      <svg
+                        width="16"
+                        height="16"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M7.9 7v2.4H12c-.2 1-1.2 3-4 3-2.4 0-4.3-2-4.3-4.4 0-2.4 2-4.4 4.3-4.4 1.4 0 2.3.6 2.8 1.1l1.9-1.8C11.5 1.7 9.9 1 8 1 4.1 1 1 4.1 1 8s3.1 7 7 7c4 0 6.7-2.8 6.7-6.8 0-.5 0-.8-.1-1.2H7.9z"
+                          fill="#0270D7"
+                        />
+                      </svg>
+                    </a>
+                  </li>
+                </ul>
                 <div class="footer-copyright">
                   &copy; 2021 Breviz, all rights reserved
                 </div>
@@ -259,8 +317,6 @@ class SitePage extends Component {
             </div>
           </footer>
         </div>
-    
-        <script src="./dist/js/main.min.js"></script>
       </div>
     );
   }
@@ -274,6 +330,15 @@ const mapStateToProps = (state) => {
     clickedText,
   };
 };
-const mapDispatchToProps = (dispatch) => (null);
+const mapDispatchToProps = (dispatch) => ({
+  sendAndSetTranscriptJSON: bindActionCreators(
+    UploadActions.sendAndSetTranscriptJSON,
+    dispatch
+  ),
+  sendTranscriptText: bindActionCreators(
+    UploadActions.sendTranscriptText,
+    dispatch
+  ),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SitePage);

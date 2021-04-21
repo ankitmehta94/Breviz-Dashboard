@@ -15,9 +15,12 @@ h1 {
   font-size: 2em;
   margin: 0.67em 0;
 }
+.hidden-file-input{
+    display: none;
+}
 figcaption,
 figure,
-main {
+.main {
   display: block;
 }
 figure {
@@ -89,6 +92,10 @@ audio:not([controls]) {
 }
 img {
   border-style: none;
+}
+.bodyTag{
+    margin: 0px;
+    height: 100%;
 }
 svg:not(:root) {
   overflow: hidden;
@@ -547,27 +554,27 @@ label {
   font-size: 20px;
   line-height: 30px;
 }
-.container,
-.container-sm {
+.containStatic,
+.containStatic-sm {
   width: 100%;
   margin: 0 auto;
   padding-left: 16px;
   padding-right: 16px;
 }
 @media (min-width: 481px) {
-  .container,
-  .container-sm {
+  .containStatic,
+  .containStatic-sm {
     padding-left: 24px;
     padding-right: 24px;
   }
 }
-.container {
+.containStatic {
   max-width: 1128px;
 }
-.container-sm {
+.containStatic-sm {
   max-width: 848px;
 }
-.container .container-sm {
+.containStatic .containStatic-sm {
   max-width: 800px;
   padding-left: 0;
   padding-right: 0;
@@ -1030,7 +1037,7 @@ label {
   border-radius: 2px;
   cursor: pointer;
   justify-content: center;
-  padding: 16px 32px;
+  padding: 16px 10px;
   height: 48px;
   text-align: center;
   white-space: nowrap;
@@ -1565,14 +1572,14 @@ label {
   flex-direction: column;
   min-height: 100vh;
 }
-.boxed-container {
+.boxed-containStatic {
   max-width: 1440px;
   margin: 0 auto;
   box-shadow: 0 24px 48px rgba(21, 24, 29, 0.24);
   mix-blend-mode: multiply;
   mix-blend-mode: normal;
 }
-main {
+.main {
   flex: 1 0 auto;
 }
 .section-inner {

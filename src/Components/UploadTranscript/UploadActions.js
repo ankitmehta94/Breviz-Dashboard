@@ -10,6 +10,10 @@ import {UPDATE_SUMMARY, CLICKED_TEXT, UPDATE_AGENDA} from '../../Constants/actio
     console.log(jsonArray,'<-----------------jsonArray')
     await api.post('upload',{jsonArray})
   }
+  const sendTranscriptText = (transcriptText, transcriptionType) => async(dispatch, getState, {api}) => {
+    const summaryType = 0;
+    await api.post('upload',{transcriptText, transcriptionType, summaryType})
+  }
  const dum = [
     {
         "id": 10,
@@ -80,5 +84,5 @@ import {UPDATE_SUMMARY, CLICKED_TEXT, UPDATE_AGENDA} from '../../Constants/actio
         "dialogue": "Johnnie Kallas: Alright, thanks guys talk to you next week.\n"
     }
 ]
-const Actions = { sendAndSetTranscriptJSON }
+const Actions = { sendAndSetTranscriptJSON, sendTranscriptText }
 export default Actions
