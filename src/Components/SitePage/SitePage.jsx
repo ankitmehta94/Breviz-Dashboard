@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import UploadActions from '../UploadTranscript/UploadActions'
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
+import { Link } from "react-router-dom";
 import classNames from '../../Utilities/classNameUtil'
 console.log(UploadActions,'<-----------------UploadActions')
 class SitePage extends Component {
@@ -96,7 +97,7 @@ class SitePage extends Component {
                     </a>
                   </h1>
                 </div>
-                <a href="./id:dummySummary" className={classNames([style['button'],style['button-primary']])}>Look at Demo Summary</a>
+                <Link to={"./id:dummySummary"} className={classNames([style['button'],style['button-primary']])}>Look at Demo Summary</Link>
               </div>
             </div>
           </header>
