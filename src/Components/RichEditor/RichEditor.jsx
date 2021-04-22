@@ -66,7 +66,7 @@
    };
  
    render() {
-     const {editorState} = this.state;
+     const {editorState} = this.props;
  
      // If the user changes block type before entering any text, we can
      // either style the placeholder or hide it. Let's just hide it now.

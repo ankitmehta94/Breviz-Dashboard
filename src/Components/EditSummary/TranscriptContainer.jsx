@@ -17,7 +17,7 @@ class TranscriptContainer extends Component{
     const htmlArray = []
         // console.log(text);
     const TranscriptsArray = Transcripts.split('\n');
-    TranscriptsArray.forEach((lineText) => {
+    TranscriptsArray.forEach((lineText,lineIndex) => {
         let flag = false;
         const summaryArray = summary.split("\n")
         for (let index = 0; index < summaryArray.length; index++) {
@@ -28,8 +28,6 @@ class TranscriptContainer extends Component{
                 const existIndex = lineText.toLowerCase()
             .trim()
             .indexOf(dialog.toLowerCase().trim());
-            console.log(existIndex,'<-----------------existIndex') 
-            console.log(index, summaryArray.length,'<-----------------index and length')
             if (existIndex > -1) {
                 // console.log(SummaryText, "<-----------------SummaryText");
                 // console.log(dialog, "<-----------------dialog");
@@ -56,7 +54,7 @@ class TranscriptContainer extends Component{
                 }
                 const end = lineText.trim().substring(endIndex, summary.length)
                 htmlArray.push(
-                    <div className={style['oneLine']}>{begining}{middle}{end}</div>
+                    <div key={`ui-${lineIndex}`} className={style['oneLine']}>{begining}{middle}{end}</div>
                 );
                 htmlArray.push(
                     <br/>
@@ -92,9 +90,7 @@ class TranscriptContainer extends Component{
     })
   }
     render(){
-        console.log(this.props.Transcripts.split('\n'),'<-----------------Transcripts.split')
         const text = this.createHighlightedHTML();
-        console.log(text,'<-----------------text')
      return (<div className={style['transcripDiv']} >{text}</div>)
     }
   }

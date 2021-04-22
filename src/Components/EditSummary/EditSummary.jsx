@@ -6,16 +6,12 @@ import {Component} from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import SummaryListActions from '../SummaryList/SummaryListActions'
-console.log(SummaryListActions,'<-----------------SummaryListActions')
-
-
-
+import RichEditorContainer from '../RichEditor/RichEditorContainer'
 
 
 class EditSummary extends Component{
   constructor(props){
     super(props)
-    // const editorState = EditorState.createWithContent(ContentState.createFromText(props.SummaryText))
     // console.log(editorState,'<-----------------editorState')
     this.state = {
       // mode: 'rawContent',
@@ -43,11 +39,14 @@ class EditSummary extends Component{
   }
     render(){
       console.log("here")
+    //  const {editorState} = this.state;
+
       return (<Animated className={style['editSummary']} animationIn="bounceInLeft" animationOut="bounceOutLeft" isVisible={this.props.isVisible}>
             <Title titleText={this.props.titleText} navigateTo={this.navigateTo}/>
           <TranscriptContainer Transcripts={this.props.Transcripts} summary={this.state.textValue} clickedText={this.props.clickedText}/>
-          <textarea className={style['textAreaCss']} value={this.state.textValue} rows={15} onChange={(event) => this.setTextValue(event)}/>
-          {/* <RichEditor SummaryText={this.props.SummaryText} summaryId={this.props.summaryId} onChange={(e)=>{console.log(e)}} /> */}
+          {/* <textarea className={style['textAreaCss']} value={this.state.textValue} rows={15} onChange={(event) => this.setTextValue(event)}/> */}
+          {/* <RichEditor SummaryText={this.props.SummaryText} editorState={editorState} summaryId={this.props.summaryId} onChange={(e)=>{console.log(e)}} /> */}
+          <RichEditorContainer SummaryText={this.props.SummaryText}/>
       </Animated>);
     }
   }

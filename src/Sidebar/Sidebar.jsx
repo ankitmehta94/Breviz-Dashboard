@@ -9,11 +9,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import classNames from '../Utilities/classNameUtil'
 const { updateSummaryKey } = SidebarActions
-console.log(SidebarActions)
   class MeetingLink extends Component {
     onClick = () => {
       const {name, onMeetinClick, disable} = this.props;
-      console.log(name,onMeetinClick,'<-----------------onMeetinClick')
       if(!disable)
         onMeetinClick(name)
      
@@ -24,7 +22,6 @@ render(){
   if(active){
     activeClass = 'active_menu_link'
   }
-  console.log(style,'<-----------------style')
   return (
     <div className={classNames([style["sidebar__link"],style[activeClass]])}>
     <i className="fa fa-home"></i>
@@ -38,20 +35,16 @@ render(){
 class Sidebar extends Component {
   createMeetingList = () => {
     const { SummaryListObject, SummaryKey, updateSummaryKey, clickedText } = this.props;
-    // console.log(SummaryListObject);
     // const SumObj = SummaryListObject[SummaryKey].summaries
     const disable = clickedText?true:false
     const htmlArray =  Object.keys(SummaryListObject).map((sumKey, sumIndex) => {
       const active = SummaryKey === sumKey
       return <MeetingLink name={sumKey} active={active} onMeetinClick={updateSummaryKey} disable={disable}/>
     });
-    console.log(htmlArray,'<-----------------htmlArray')
     return (<Fragment>{htmlArray}</Fragment>)
   }
   render(){
     const Meetings = this.createMeetingList()
-    console.log('Meetings');
-    console.log(this.props.sidebarOpen,'<-----------------this.sidebarOpen')
     const responsiveClass = this.props.sidebarOpen?'sidebar_responsive':''
     return (
       <div className={classNames([style[responsiveClass],style["sidebar"]])} >
@@ -73,7 +66,6 @@ class Sidebar extends Component {
 
 const mapStateToProps = (state) => {
   const { SummaryListReducer = {} } = state;
-  console.log(SummaryListReducer, "<-----------------SummaryListReducer");
   const {SummaryListObject, SummaryKey, clickedText} = SummaryListReducer
   return {
     SummaryListObject: SummaryListObject,

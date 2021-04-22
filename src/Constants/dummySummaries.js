@@ -136,8 +136,10 @@ const Summaries = {
       Ankit Mehta saved the file as PDF for every file type.
       Victor Rieman sees the PDF.
       Ankit Mehta: And you can do multiple files to that.
-      Johnnie Kallas wants to know what was the file Victor uploaded.
-      Ankit Mehta will upload PDF versions of the source and the source to the website.
+      Johnnie Kallas wants to know what was the file Victor uploaded.`,
+      },
+      summay2: {
+        summary: `Ankit Mehta will upload PDF versions of the source and the source to the website.
       Victor Rieman took the web page that the Bloomberg sources, and then he did a. He printed it and saved it as a PDF.
       Johnnie Kallas is going to start doing that.
       Victor Rieman hasn't been doing it for the Bloomberg ones, but it might be a good idea to be consistent.
@@ -167,51 +169,56 @@ const Summaries = {
       Ankit Mehta will have to remove the city's and the zip codes from the list.
       Victor Rieman will let him know what to do.
       Ankit Mehta: This is only if capturing cities separately is important. If it's just one string then repeat Chicago as many times as you need it. If you want to filter by state, you need separate points.
-      Victor Rieman would like to get rid of the city and keep the address separate.
-      Ankit Mehta wants John to capture cities separately, if that's okay with him.
-      Johnnie Kallas wants to keep the cities for now.
-      Ankit Mehta has already done all the required coding for the song.
-      Johnnie Kallas apologized to Victor for being a pain in the ass for him.
-      Victor Rieman hopes there won't be many more of these again.
-      Johnnie Kallas wants to read them out to you.
-      Victor Rieman is in oaklawn Illinois right now.
-      Johnnie Kallas will go to Chicago and then to the pit task.
-      Ankit Mehta: One that'd be seen moments will come.
-      Johnnie Kallas has sent a text message.
-      Victor Rieman thinks walnut street is called walnut Street.
-      Ankit Mehta was confused by the name of the city.
-      Johnnie Kallas: And then streeter str EA to our.
-      Victor Rieman and Victor Rieman are discussing 11 people.
-      Ankit Mehta: You can just copy paste Illinois like 11 times.
-      Victor Rieman has just sent a message.
-      Ankit Mehta will copy this and send it to Ankit.
-      Johnnie Kallas will read all of them out to you. He can see him right now.
-      Victor Rieman has sent a message to Victor.
-      Victor Rieman has sent in the information.
-      Ankit Mehta suggests that to get a job just leave out the semi colon.
-      Johnnie Kallas doesn't have a semi colon here for the last one on kid.
-      Ankit Mehta doesn't have to put it in the last one.
-      Victor Rieman is going to send a message.
-      Ankit Mehta will send a link to summit to Ankit.
-      Victor Rieman will send the file to him.
-      Ankit Mehta would like to put in the chat, but it didn't work.
-      Victor Rieman has sent a message to Victor.
-      Ankit Mehta will fix the problem and by the end of this week, he should have some forms to fill out.
-      Johnnie Kallas has sent a message.
-      Ankit Mehta is happy to answer to me right now.
-      Johnnie Kallas is going to meet with his friends.
-      Ankit Mehta: The edit link is the only option. If you don't want anyone to mess with the data, only let one person control it right.
-      Johnnie Kallas and the other banks are what you need to make out.
-      Ankit Mehta doesn't want pages to be copy-pasted into this form.
-      Johnnie Kallas wants Victor to make it a priority this week to fill in the end dates. He will take the leadership on transferring everything over.
-      Ankit Mehta doesn't want to go out now.
-      Johnnie Kallas will take care of it when he gets the go-ahead.
-      Ankit Mehta will fix whatever problem he needs to fix.
-      Johnnie Kallas thinks it's working just besides the.
-      Ankit Mehta is complaining about multiple location location.
-      Johnnie Kallas is happy with the work of the team.
-      Victor Rieman has sent a message to Victor.
-      Johnnie Kallas will talk to you next week.`,
+      Victor Rieman would like to get rid of the city and keep the address separate.`,
+      },
+      summay3: {
+        summary: `Ankit Mehta wants John to capture cities separately, if that's okay with him.
+        Johnnie Kallas wants to keep the cities for now.
+        Ankit Mehta has already done all the required coding for the song.
+        Johnnie Kallas apologized to Victor for being a pain in the ass for him.
+        Victor Rieman hopes there won't be many more of these again.
+        Johnnie Kallas wants to read them out to you.
+        Victor Rieman is in oaklawn Illinois right now.
+        Johnnie Kallas will go to Chicago and then to the pit task.
+        Ankit Mehta: One that'd be seen moments will come.
+        Johnnie Kallas has sent a text message.
+        Victor Rieman thinks walnut street is called walnut Street.
+        Ankit Mehta was confused by the name of the city.
+        Johnnie Kallas: And then streeter str EA to our.
+        Victor Rieman and Victor Rieman are discussing 11 people.`,
+      },
+      summay4: {
+        summary: `
+        Ankit Mehta: You can just copy paste Illinois like 11 times.
+        Victor Rieman has just sent a message.
+        Ankit Mehta will copy this and send it to Ankit.
+        Johnnie Kallas will read all of them out to you. He can see him right now.
+        Victor Rieman has sent a message to Victor.
+        Victor Rieman has sent in the information.
+        Ankit Mehta suggests that to get a job just leave out the semi colon.
+        Johnnie Kallas doesn't have a semi colon here for the last one on kid.
+        Ankit Mehta doesn't have to put it in the last one.
+        Victor Rieman is going to send a message.
+        Ankit Mehta will send a link to summit to Ankit.
+        Victor Rieman will send the file to him.
+        Ankit Mehta would like to put in the chat, but it didn't work.
+        Victor Rieman has sent a message to Victor.
+        Ankit Mehta will fix the problem and by the end of this week, he should have some forms to fill out.
+        Johnnie Kallas has sent a message.
+        Ankit Mehta is happy to answer to me right now.
+        Johnnie Kallas is going to meet with his friends.
+        Ankit Mehta: The edit link is the only option. If you don't want anyone to mess with the data, only let one person control it right.
+        Johnnie Kallas and the other banks are what you need to make out.
+        Ankit Mehta doesn't want pages to be copy-pasted into this form.
+        Johnnie Kallas wants Victor to make it a priority this week to fill in the end dates. He will take the leadership on transferring everything over.
+        Ankit Mehta doesn't want to go out now.
+        Johnnie Kallas will take care of it when he gets the go-ahead.
+        Ankit Mehta will fix whatever problem he needs to fix.
+        Johnnie Kallas thinks it's working just besides the.
+        Ankit Mehta is complaining about multiple location location.
+        Johnnie Kallas is happy with the work of the team.
+        Victor Rieman has sent a message to Victor.
+        Johnnie Kallas will talk to you next week.`,
       },
     },
     actionItems: ` Johnnie Kallas: will talk both of you next week

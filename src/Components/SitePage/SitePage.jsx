@@ -87,7 +87,7 @@ class SitePage extends Component {
             <div className={style['containStatic']}>
               <div className={style['site-header-inner']}>
                 <div className={classNames([style['brand'],style['header-brand']])}>
-                  <h1 className={style['m-0']}>
+                  <h1 className={classNames([style['h1'],style['m-0']])}>
                     <a href="/">
                       <img
                         className={style['header-logo-image']}
@@ -107,7 +107,7 @@ class SitePage extends Component {
               <div className={style['containStatic']}>
                 <div className={style['hero-inner']}>
                   <div className={style['hero-copy']}>
-                    <h1 className={classNames([style['hero-title'], style['mt-0']])}>
+                    <h1 className={classNames([style['hero-title'], style['mt-0'], style['h1']])}>
                       Bring Brevity to Your Meetings!
                     </h1>
                     <p className={classNames([style['text-sm'],style[' mb-0']])}>
@@ -125,7 +125,7 @@ class SitePage extends Component {
                       </label>
                     </div>
                   </div>
-                  <div className={classNames([style['hero-figure'] ,style['anime-element']])}>
+                  {/* <div className={classNames([style['hero-figure'] ,style['anime-element']])}>
                     <svg
                       className={style['placeholder']}
                       width="528"
@@ -138,7 +138,7 @@ class SitePage extends Component {
                         style={{ fill: "transparent" }}
                       />
                     </svg>
-                    {/* <div
+                    <div
                       className={classNames([style['hero-figure-box'], style['hero-figure-box-01']])}
                       dataRotation="45deg"
                     ></div>
@@ -168,8 +168,8 @@ class SitePage extends Component {
                     <div
                       className={classNames([style['hero-figure-box'], style['hero-figure-box-10']])}
                       dataRotation="-50deg"
-                    ></div> */}
-                  </div>
+                    ></div>
+                  </div> */}
                 </div>
               </div>
             </section>
@@ -183,7 +183,7 @@ class SitePage extends Component {
                         <div className={style['feature-icon']}>
                           <img src={EA} alt="Feature 01" />
                         </div>
-                        <h4 className={style['feature-title mt-24']}>
+                        <h4 className={classNames([style['feature-title mt-24'],style['h4']])}>
                           Executive Assistants
                         </h4>
                         <p className={classNames([style['text-sm'],style[' mb-0']])}>
@@ -198,7 +198,7 @@ class SitePage extends Component {
                         <div className={style['feature-icon']}>
                           <img src={Earnings} alt="Feature 02" />
                         </div>
-                        <h4 className={classNames([style['feature-title'], style['mt-24']])}>Buy Side Analysts</h4>
+                        <h4 className={classNames([style['feature-title'], style['mt-24'],style['h4']])}>Buy Side Analysts</h4>
                         <p className={classNames([style['text-sm'],style['mb-0']])}>
                           Reading/Listening to Earning Calls take too long, the
                           real information is all over the place. Breviz will
@@ -211,7 +211,7 @@ class SitePage extends Component {
                         <div className={style['feature-icon']}>
                           <img src={Coder} alt="Feature 03" />
                         </div>
-                        <h4 className={classNames([style['feature-title'], style['mt-24']])}>Product Owners</h4>
+                        <h4 className={classNames([style['feature-title'], style['mt-24'],style['h4']])}>Product Owners</h4>
                         <p className={classNames([style['text-sm'],style['mb-0']])}>
                           Can't keep track of scrum meetings, don't know who
                           attended and who said what. Breviz will keep track for
@@ -227,7 +227,7 @@ class SitePage extends Component {
             <section className={style['cta section']}>
               <div className={style['containStatic']}>
                 <div className={classNames([style['cta-inner'], style['section-inner']])}>
-                  <h3 className={classNames([style['section-title'], style['mt-0']])}>
+                  <h3 className={classNames([style['section-title'], style['mt-0'],style['h3']])}>
                     Are you interested inlearning more about Breviz
                   </h3>
                   <div className={style['cta-cta']}>
