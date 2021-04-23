@@ -87,7 +87,7 @@ class ActionItems extends Component {
     const { SummaryListObject, SummaryKey } = this.props;
     if(SummaryListObject[SummaryKey].actionItems){
       return SummaryListObject[SummaryKey].actionItems.split('\n').map((line, index) => {
-        return <div>{line}</div>
+        return <div key={`er-${index}`}>{line}</div>
       })
     }
     return null;
@@ -122,6 +122,13 @@ class ActionItems extends Component {
   }
 }
 class SummaryList extends Component {
+  constructor(props){
+    console.log(props,'<-----------------props')
+    super(props);
+    this.state = {
+
+    }
+  }
   createList = () => {
     const { SummaryListObject, SummaryKey } = this.props;
     // console.log(SummaryListObject);
@@ -160,7 +167,7 @@ class SummaryList extends Component {
     const dialog = SummarySplit[1]?SummarySplit[1]:SummaryText;
     const personName = SummarySplit[1]?SummarySplit[0]:'';
     const htmlArray = [];
-    const Transcripts = SummaryListObject[SummaryKey].transcript;
+    const Transcripts = SummaryListObject[SummaryKey].transcript || '';
     // if (dialog) {
       const existIndex = Transcripts.toLowerCase()
         .trim()

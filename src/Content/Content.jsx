@@ -1,9 +1,11 @@
 import style from "./Content.css";
 import { Component } from "react";
-
+import { withRouter } from "react-router";
+import { connect } from "react-redux";
 import SummaryList from "../Components/SummaryList/SummaryList.jsx";
 import EditSummary from "../Components/EditSummary/EditSummary.jsx";
-
+import { bindActionCreators } from "redux";
+import SummaryListActions from '../Components/SummaryList/SummaryListActions'
 const setContent = (MainComponent, props) => {
   class Main extends Component {
     render() {
@@ -19,6 +21,15 @@ const contentDictionary = {
   editSummary: EditSummary,
 };
 class Content extends Component {
+  componentDidMount(){
+    this.getSummaryObject()
+  
+  }
+  getSummaryObject = async() => {
+    const { location, getSummaryObject } = this.props
+    const {pathname} = location;
+    await getSummaryObject(pathname);
+  }
   state = {
     incomingComponent: () => null,
     mainContent: SummaryList,
@@ -64,4 +75,14 @@ class Content extends Component {
   }
 }
 
-export default Content;
+const mapStateToProps = (state) => {
+ return {}
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getSummaryObject: bindActionCreators(SummaryListActions.getSummaryObject, dispatch),
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Content));

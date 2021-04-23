@@ -1,4 +1,4 @@
-import {UPDATE_SUMMARY, CLICKED_TEXT, UPDATE_AGENDA} from '../../Constants/actionConstants';
+import {UPDATE_SUMMARY, CLICKED_TEXT, UPDATE_AGENDA, ADD_SUMMARY} from '../../Constants/actionConstants';
   
 //   import {disableLocationActiveState} from './hotelHelperFunctions';
   
@@ -15,6 +15,21 @@ import {UPDATE_SUMMARY, CLICKED_TEXT, UPDATE_AGENDA} from '../../Constants/actio
                 type : UPDATE_SUMMARY,
                 payload : SummaryListObject
             });
+  }
+  const getSummaryObject = (path) => async(dispatch, getState, {api}) => {
+    const newUrl = path.replace('id:','get_summary:')
+    const response = await api.get(newUrl);
+    console.log(response);
+    const {output } = response;
+    const {summaryObject} = JSON.parse(output);
+    const {SummaryListReducer} = getState();
+    const {SummaryListObject} = SummaryListReducer;
+    SummaryListObject[summaryObject['name']] = {summaries : summaryObject['summaries'], transcript: response['transcriptText']}
+    dispatch({
+      type : ADD_SUMMARY,
+      payload : {summaryList: SummaryListObject, clickedText: summaryObject['name'], SummaryKey: summaryObject['name']}
+    });
+    return response
   }
   const updateSummaryList = (newSummaryObject) => (dispatch, getState) => {
     const { summaryId, newSummaryText } = newSummaryObject;
@@ -43,7 +58,7 @@ import {UPDATE_SUMMARY, CLICKED_TEXT, UPDATE_AGENDA} from '../../Constants/actio
             });
   }
 
-const Actions = { updateClickedText, updateSummaryList, updateAgenda, updateActionItems }
+const Actions = { updateClickedText, updateSummaryList, updateAgenda, updateActionItems,getSummaryObject }
 export default Actions
 //   export const setLocationTitleActive = (locationTitle, isExpanded = false, locationsMap) => (dispatch) => {
 //     try{

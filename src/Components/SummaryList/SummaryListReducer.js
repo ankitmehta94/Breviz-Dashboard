@@ -1,5 +1,5 @@
 import Summaries from '../../Constants/dummySummaries';
-import {UPDATE_SUMMARY, SELECT_SUMMARY, CLICKED_TEXT} from '../../Constants/actionConstants';
+import {UPDATE_SUMMARY, SELECT_SUMMARY, CLICKED_TEXT, ADD_SUMMARY} from '../../Constants/actionConstants';
 
 const initialState = {
     SummaryListObject: Summaries,
@@ -13,6 +13,15 @@ const SummaryListReducer =  (state = initialState, action) => {
       return {
         ...state,    
         SummaryListObject: action.payload,
+        clickedText: '',
+      };
+    }
+    case ADD_SUMMARY: {
+      const {SummaryKey, summaryList} = action.payload
+      return {
+        ...state,    
+        SummaryListObject: summaryList,
+        SummaryKey:SummaryKey,
         clickedText: '',
       };
     }

@@ -1,4 +1,4 @@
-import {UPDATE_SUMMARY, CLICKED_TEXT, UPDATE_AGENDA} from '../../Constants/actionConstants';
+import {ADD_SUMMARY} from '../../Constants/actionConstants';
 //   import {disableLocationActiveState} from './hotelHelperFunctions';
   
   const actionCreator = (key, hasPayload = false) => {
@@ -12,7 +12,15 @@ import {UPDATE_SUMMARY, CLICKED_TEXT, UPDATE_AGENDA} from '../../Constants/actio
   const sendTranscriptText = (transcriptText, transcriptionType) => async(dispatch, getState, {api}) => {
     const summaryType = 0;
     const response = await api.post('upload',{transcriptText, transcriptionType, summaryType});
-    console.log(response)
+    console.log(response);
+    const {summaryObject } = response
+    const {SummaryListReducer} = getState();
+    const {SummaryListObject} = SummaryListReducer;
+    SummaryListObject[summaryObject['name']] = {summaries : summaryObject['summaries'], transcript: response['transcriptText']}
+    dispatch({
+      type : ADD_SUMMARY,
+      payload : {summaryList: SummaryListObject, clickedText: summaryObject['name'],SummaryKey:summaryObject['name']}
+  });
     return response
 
   }
