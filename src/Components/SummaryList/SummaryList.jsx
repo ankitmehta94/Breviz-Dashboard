@@ -55,7 +55,7 @@ class Agenda extends Component {
     return this.state.textValue ? (
       <div className={style["cellList"]}>
         <div className={style["iconDiv"]}>
-           <div  onClick={this.showAgendaEdit}> <FontAwesomeIcon icon={faEdit} /> Edit</div> 
+           <div className={style["iconDiv"]}  onClick={this.showAgendaEdit}> <FontAwesomeIcon icon={faEdit} /> Edit</div> 
           </div>
         <div className={style["CellLine"]}>{this.state.textValue}</div>
       </div>
@@ -108,11 +108,12 @@ class ActionItems extends Component {
       return (
         <Fragment>
             <Title titleText={"ACTION ITEMS"} />
-            <div className={style["cellList"]}>
-          <div className={style["iconDiv"]}>
+            
+        <div className={style["cellList"]}>
+        <div className={style["actionTab"]} ><div className={style["iconDiv"]}>
               <FontAwesomeIcon icon={faEdit} onClick={this.showActionsItemEdit} />Edit
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send To Jira
             </div>
+            <div className={style["iconDiv"]}>  Send To Jira</div></div>
           <div className={style["CellLine"]}>{actionItems}</div>
         </div>
         </Fragment>
@@ -145,12 +146,30 @@ class SummaryList extends Component {
           </p>
         );
       });
+      const Transcripts = SummaryListObject[SummaryKey].transcript || '';
+      const showSummayEdit = () =>
+      this.showSummayEdit(sum.summary, Transcripts, sumKey);
       return (
         <div className={style["CellLine"]} key={`sumIndex-${sumIndex}`}>
+          <div className={style["actionTab"]} onClick={showSummayEdit}>
+            <div className={style["iconDiv"]}>
+            <FontAwesomeIcon icon={faEdit} /> Edit
+            </div>
+            
+          </div>
           {htmlArray}
         </div>
       );
     });
+  };
+  showSummayEdit = (SummaryText, Transcripts, summaryId) => {
+    this.props.changeContent("editSummary", {
+      SummaryText,
+      Transcripts,
+      summaryId,
+      titleText: "EDIT SUMMARY",
+    });
+    this.props.updateClickedText('EDIT SUMMARY');
   };
   showEditSummary = (SummaryText, Transcripts, summaryId, middleText) => {
     this.props.changeContent("editSummary", {

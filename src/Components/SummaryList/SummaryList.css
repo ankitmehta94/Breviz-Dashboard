@@ -8,6 +8,17 @@
     flex-direction: column;
     justify-content: space-between;
 }
+.actionTab{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.actionTab>div{
+    margin-right: 5px;
+}
+.iconDiv:hover{
+   color: #2568c3;
+}
 .clickMe{
     background-color: #cde4f7;
     width: fit-content;
