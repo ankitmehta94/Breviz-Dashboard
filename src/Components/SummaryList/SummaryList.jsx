@@ -85,7 +85,7 @@ class ActionItems extends Component {
   }
   getActionItems = () => {
     const { SummaryListObject, SummaryKey } = this.props;
-    if(SummaryListObject[SummaryKey].actionItems){
+    if(SummaryListObject[SummaryKey] && SummaryListObject[SummaryKey].actionItems){
       return SummaryListObject[SummaryKey].actionItems.split('\n').map((line, index) => {
         return <div key={`er-${index}`}>{line}</div>
       })
@@ -133,7 +133,7 @@ class SummaryList extends Component {
   createList = () => {
     const { SummaryListObject, SummaryKey } = this.props;
     // console.log(SummaryListObject);
-    const SumObj = SummaryListObject[SummaryKey].summaries;
+    const SumObj = SummaryListObject[SummaryKey] && SummaryListObject[SummaryKey].summaries ?SummaryListObject[SummaryKey].summaries:{};
     // console.log(SumObj, "<-----------------SumObj");
     return Object.keys(SumObj).map((sumKey, sumIndex) => {
       const sum = SumObj[sumKey];
@@ -192,12 +192,10 @@ class SummaryList extends Component {
         .trim()
         .indexOf(dialog.toLowerCase().trim());
       if (existIndex > -1) {
-        console.log(SummaryText, "<-----------------SummaryText");
         // console.log(dialog, "<-----------------dialog");
         const startIndex = SummaryText.toLowerCase()
           .trim()
           .indexOf(dialog.toLowerCase().trim())//+personName.length;
-        console.log(startIndex,'<-----------------startIndex',SummaryText.trim().substring(0, startIndex))
         const length = dialog.toLowerCase().trim().length;
         const endIndex = startIndex + length;
 
@@ -236,7 +234,7 @@ class SummaryList extends Component {
   };
   getAgenda = () => {
     const { SummaryListObject, SummaryKey } = this.props;
-    return SummaryListObject[SummaryKey].agenda;
+    return SummaryListObject[SummaryKey]?SummaryListObject[SummaryKey].agenda:'';
   };
   render() {
     const SummaryHTML = this.createList();

@@ -7,8 +7,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import SummaryListActions from '../SummaryList/SummaryListActions'
 import RichEditorContainer from '../RichEditor/RichEditorContainer'
-
-
+import {ANIMATION_DURATION} from '../../Constants/configConstants'
 class EditSummary extends Component{
   constructor(props){
     super(props)
@@ -24,10 +23,9 @@ class EditSummary extends Component{
       textValue:event.target.value
     })
   }
-  navigateTo = () => {
+  navigateTo = async() => {
     const {changeContent, summaryId, updateSummaryList, updateActionItems} = this.props;
     console.log(this.props,'<-----------------this.props.changeContent')
-    changeContent('summaryList',{})
     if(summaryId !== 'actionItems'){
       updateSummaryList({
         summaryId: summaryId,
@@ -36,11 +34,12 @@ class EditSummary extends Component{
     }else{
       updateActionItems(this.state.textValue)
     }
+    await changeContent('summaryList',{})
   }
     render(){
       console.log("here")
     //  const {editorState} = this.state;
-
+    console.log(this.props.isVisible,'<-----------------this.props.isVisible, navigateTo')
       return (<Animated className={style['editSummary']} animationIn="bounceInLeft" animationOut="bounceOutLeft" isVisible={this.props.isVisible}>
             <Title titleText={this.props.titleText} navigateTo={this.navigateTo}/>
           <TranscriptContainer Transcripts={this.props.Transcripts} summary={this.state.textValue} clickedText={this.props.clickedText}/>

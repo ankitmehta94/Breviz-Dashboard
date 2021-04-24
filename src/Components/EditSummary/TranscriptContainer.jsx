@@ -53,6 +53,7 @@ class TranscriptContainer extends Component{
                       )
                 }
                 const end = lineText.trim().substring(endIndex, summary.length)
+                console.log(style['oneLine'])
                 htmlArray.push(
                     <div key={`ui-${lineIndex}`} className={style['oneLine']}>{begining}{middle}{end}</div>
                 );

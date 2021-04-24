@@ -1,10 +1,11 @@
 import Summaries from '../../Constants/dummySummaries';
-import {UPDATE_SUMMARY, SELECT_SUMMARY, CLICKED_TEXT, ADD_SUMMARY} from '../../Constants/actionConstants';
+import {UPDATE_SUMMARY, SELECT_SUMMARY, CLICKED_TEXT, ADD_SUMMARY, SET_CREATION_LOADER, SET_FILENAME } from '../../Constants/actionConstants';
 
 const initialState = {
-    SummaryListObject: Summaries,
-    SummaryKey:Object.keys(Summaries)[0],
-    clickedText: ''
+    SummaryListObject: {},
+    SummaryKey:'',
+    clickedText: '',
+    meetingName: ''
 };
 
 const SummaryListReducer =  (state = initialState, action) => {
@@ -35,6 +36,18 @@ const SummaryListReducer =  (state = initialState, action) => {
       return {
         ...state,    
         clickedText: action.payload,
+      };
+    }
+    case SET_CREATION_LOADER: {
+      return {
+        ...state,    
+        creationLoader: action.payload,
+      };
+    }
+    case SET_FILENAME: {
+      return {
+        ...state,    
+        meetingName: action.payload,
       };
     }
     default:

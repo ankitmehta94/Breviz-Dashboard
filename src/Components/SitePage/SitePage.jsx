@@ -11,7 +11,9 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import classNames from '../../Utilities/classNameUtil'
-console.log(UploadActions,'<-----------------UploadActions')
+import UploadUtils from '../../Utilities/UploadUtils'
+console.log(UploadUtils,'<-----------------UploadActions')
+
 class SitePage extends Component {
   constructor(props) {
     super(props);
@@ -19,61 +21,11 @@ class SitePage extends Component {
       textValue: this.props.SummaryText,
       buttonOutterClass: "",
     };
-  }
-  onFileUploadChange = () => {
-    this.setState({
-      buttonOutterClass: "file_uploading",
-    });
-    setTimeout(() => {
-      this.setState({
-        buttonOutterClass: this.state.buttonOutterClass + " file_uploaded",
-      });
-    }, 3000);
-  };
-  uploadFile = async () => {
-    const { sendAndSetTranscriptJSON } = this.props;
-    await sendAndSetTranscriptJSON([]);
-  };
- readFileContent = (file) => {
-	const reader = new FileReader()
-  return new Promise((resolve, reject) => {
-    reader.onload = event => resolve(event.target.result)
-    reader.onerror = error => reject(error)
-    reader.readAsText(file)
-  })
-}
-  navigateTo = () => {
-    const {
-      changeContent,
-      summaryId,
-      updateSummaryList,
-      updateActionItems,
-    } = this.props;
-    console.log(this.props, "<-----------------this.props.changeContent");
-    changeContent("summaryList", {});
-    if (summaryId !== "actionItems") {
-      updateSummaryList({
-        summaryId: summaryId,
-        newSummaryText: this.state.textValue,
-      });
-    } else {
-      updateActionItems(this.state.textValue);
-    }
-  };
-  sendOtterTranscript = async (event) => {
-    const input = event.target
-    const { sendTranscriptText, history } = this.props;
-   const text =  await this.readFileContent(input.files[0])
-   console.log(history)
-   const res = await sendTranscriptText(text,'otter');
-   history.push(`id:${res.id}`)
-  }
-  sendZoomTranscript = async (event) => {
-    const input = event.target
-    const { sendTranscriptText, history } = this.props;
-   const text =  await this.readFileContent(input.files[0])
-   const res = await sendTranscriptText(text,'zoomOtter');
-   history.push(`id:${res.id}`)
+    this.sendZoomTranscript = UploadUtils.sendZoomTranscript.bind(this)
+    this.readFileContent = UploadUtils.readFileContent.bind(this)
+    this.sendOtterTranscript = UploadUtils.sendOtterTranscript.bind(this)
+    this.setNameOfTranscript = UploadUtils.setNameOfTranscript.bind(this)
+    this.readFileAndSend = UploadUtils.readFileAndSend.bind(this)
   }
 
   render() {
@@ -343,6 +295,10 @@ const mapDispatchToProps = (dispatch) => ({
   ),
   sendTranscriptText: bindActionCreators(
     UploadActions.sendTranscriptText,
+    dispatch
+  ),
+  setFileName: bindActionCreators(
+    UploadActions.setFileName,
     dispatch
   ),
 });

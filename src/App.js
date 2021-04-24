@@ -24,8 +24,6 @@ const MySwal = withReactContent(Swal)
 
 
 const store = configureStore({
-  SummaryListObject: Summaries,
-  SummaryKey:Object.keys(Summaries)[0]
 });
 function Container() {
   const [sidebarOpen, setsidebarOpen] = useState(false);
@@ -67,9 +65,9 @@ class App extends Component {
     <Router>
     <Provider store={store}>
     <Switch>
-     <Route path="/id:*">
-            <Container />
-      </Route>
+     <Route path="*/id:*">
+          <Container />
+    </Route>
       <Route path="/">
         {console.log(SitePage)}
             <SitePage />
