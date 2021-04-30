@@ -39,7 +39,7 @@ class Sidebar extends Component {
     const disable = clickedText?true:false
     const htmlArray =  Object.keys(SummaryListObject).map((sumKey, sumIndex) => {
       const active = SummaryKey === sumKey
-      return <MeetingLink name={sumKey} active={active} onMeetinClick={updateSummaryKey} disable={disable}/>
+      return <MeetingLink key={sumKey} name={sumKey} active={active} onMeetinClick={updateSummaryKey} disable={disable}/>
     });
     return (<Fragment>{htmlArray}</Fragment>)
   }

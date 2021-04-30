@@ -130,23 +130,24 @@ class SummaryList extends Component {
 
     }
   }
+  componentWillReceiveProps(nextProps){
+    console.log(nextProps,'nextProps')
+  }
   createList = () => {
-    const { SummaryListObject, SummaryKey } = this.props;
+    const { SumObj, Transcripts } = this.props;
     // console.log(SummaryListObject);
-    const SumObj = SummaryListObject[SummaryKey] && SummaryListObject[SummaryKey].summaries ?SummaryListObject[SummaryKey].summaries:{};
     // console.log(SumObj, "<-----------------SumObj");
     return Object.keys(SumObj).map((sumKey, sumIndex) => {
       const sum = SumObj[sumKey];
       // console.log(sum, "<-----------------sumKey");
       let htmlArray = sum.summary.split("\n").map((text, index) => {
-        // console.log(text);
+        console.log(text);
         return (
           <p key={`p-${index}`}>
             {this.createHighlightedHTML(text, sum.summary, sumKey)}
           </p>
         );
       });
-      const Transcripts = SummaryListObject[SummaryKey].transcript || '';
       const showSummayEdit = () =>
       this.showSummayEdit(sum.summary, Transcripts, sumKey);
       return (
@@ -216,18 +217,18 @@ class SummaryList extends Component {
 
         if(middleText){
           return (
-            <div className={style["oneLine"]}>
+            <span className={style["oneLine"]}>
               {/* {personName?personName+': ':''} */}
               {SummaryText.trim().substring(0, startIndex)}
-              <div className={style["clickMe"]} onClick={showEditSummary}>
+              <span className={style["clickMe"]} onClick={showEditSummary}>
                 {SummaryText.trim().substring(startIndex, endIndex)}
-              </div>
+              </span>
               {SummaryText.trim().substring(endIndex, SummaryText.length)}
-            </div>
+            </span>
           );
         }
       } else {
-        return <div>{SummaryText}</div>;
+        return <span>{SummaryText}</span>;
       }
       // console.log(LCS(dialog.toLowerCase().trim(), Transcripts.toLowerCase().trim()))
     // }
@@ -258,15 +259,19 @@ class SummaryList extends Component {
 
 const mapStateToProps = (state) => {
   const { SummaryListReducer = {} } = state;
-  // console.log(SummaryListReducer, "<-----------------SummaryListReducer");
-  const { SummaryListObject, SummaryKey } = SummaryListReducer;
+  
+  const { SummaryListObject, SummaryKey, updateKey} = SummaryListReducer;
+  console.log(updateKey, "<-----------------updateKey");
+  const Transcripts = SummaryListObject[SummaryKey]? SummaryListObject[SummaryKey].transcript : '';
+  const SumObj = SummaryListObject[SummaryKey] && SummaryListObject[SummaryKey].summaries ?SummaryListObject[SummaryKey].summaries:{};
   return {
     SummaryListObject: SummaryListObject,
     SummaryKey: SummaryKey,
+    Transcripts,SumObj, updateKey
   };
 };
 const mapDispatchToProps = (dispatch) => {
-  console.log(SummaryListActions, "<-----------------SummaryListActions");
+  // console.log(SummaryListActions, "<-----------------SummaryListActions");
   return {
     updateClickedText: bindActionCreators(
       SummaryListActions.updateClickedText,

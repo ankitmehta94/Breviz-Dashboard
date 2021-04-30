@@ -74,15 +74,16 @@ class Content extends Component {
     let mainContent = null
     // const incomingComponent = setContent(incomingComponent,{})
     // await sleep(ANIMATION_DURATION)
-    mainContent = setContent(contentDictionary[this.state.prevComponent], {...contentProps,changeContent:this.changeMainContent, isVisible:false });
-    this.setState({
-      titleText: contentProps.titleText,
-      mainContent: mainContent,
-      mainVisible: false,
-      // prevComponent: contentId,
-    })
+    // mainContent = setContent(contentDictionary[this.state.prevComponent], {...contentProps,changeContent:this.changeMainContent, isVisible:false });
+    // this.setState({
+     
+    //   mainContent: mainContent,
+    //   mainVisible: false,
+    //   // prevComponent: contentId,
+    // })
     mainContent = setContent(contentDictionary[contentId], {...contentProps,changeContent:this.changeMainContent, isVisible:true });
     this.setState({
+      titleText: contentProps.titleText,
       // incomingComponent: NoComponent,
       mainContent: mainContent,
       mainVisible: true,

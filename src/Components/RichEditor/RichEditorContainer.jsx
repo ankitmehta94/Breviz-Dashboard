@@ -113,6 +113,10 @@
    componentDidMount() {
      this.setContent();
    }
+   componentWillUnmount() {
+    const finalState = convertToRaw(this.state.editorState.getCurrentContent())
+    this.props.runWhileLeaving(finalState)
+   }
  
    onChange = editorState => {
      this.setState({editorState});

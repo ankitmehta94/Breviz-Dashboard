@@ -68,14 +68,14 @@ import dummySummaries from '../../Constants/dummySummaries';
     return response
   }
   const updateSummaryList = (newSummaryObject) => (dispatch, getState) => {
-    const { summaryId, newSummaryText } = newSummaryObject;
+    const { summaryId, newSummaryText, updateKey } = newSummaryObject;
     const {SummaryListReducer} = getState();
     const {SummaryListObject, SummaryKey} = SummaryListReducer
-    console.log(SummaryListObject,'<-----------------SummaryListObject');
+    console.log(newSummaryText,'<-----------------SummaryListObject');
     SummaryListObject[SummaryKey].summaries[summaryId] = {summary: newSummaryText};
     dispatch({
                 type : UPDATE_SUMMARY,
-                payload : SummaryListObject
+                payload : {SummaryListObject, updateKey}
             });
   }
   const updateClickedText = (clickedText) => (dispatch, getState) => {

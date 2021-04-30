@@ -15,6 +15,7 @@ class EditSummary extends Component{
     this.state = {
       // mode: 'rawContent',
       // editorState: editorState,
+
       textValue: this.props.SummaryText,
     };
   }
@@ -24,17 +25,36 @@ class EditSummary extends Component{
     })
   }
   navigateTo = async() => {
-    const {changeContent, summaryId, updateSummaryList, updateActionItems} = this.props;
-    console.log(this.props,'<-----------------this.props.changeContent')
-    if(summaryId !== 'actionItems'){
-      updateSummaryList({
-        summaryId: summaryId,
-        newSummaryText: this.state.textValue
-      })
-    }else{
-      updateActionItems(this.state.textValue)
-    }
+    const {changeContent} = this.props;
     await changeContent('summaryList',{})
+  }
+  saveEditedText = (editorJson) => {
+      console.log(editorJson)
+      const textValue = editorJson.blocks.map((block) => {
+        console.log(block)
+        return block['text']
+      }).join('\n')
+      function hashCode(string) {
+        var hash = 0, i, chr;
+        if (string.length === 0) return hash;
+        for (i = 0; i < string.length; i++) {
+          chr   = string.charCodeAt(i);
+          hash  = ((hash << 5) - hash) + chr;
+          hash |= 0; // Convert to 32bit integer
+        }
+        return hash;
+      };
+      const {changeContent, summaryId, updateSummaryList, updateActionItems} = this.props;
+      console.log(hashCode(textValue),'<-----------------this.props.changeContent')
+      if(summaryId !== 'actionItems'){
+        updateSummaryList({
+          summaryId: summaryId,
+          newSummaryText: textValue,
+          updateKey:hashCode(textValue),
+        })
+      }else{
+        updateActionItems(textValue)
+      }
   }
     render(){
       console.log("here")
@@ -45,7 +65,7 @@ class EditSummary extends Component{
           <TranscriptContainer Transcripts={this.props.Transcripts} summary={this.state.textValue} clickedText={this.props.clickedText}/>
           {/* <textarea className={style['textAreaCss']} value={this.state.textValue} rows={15} onChange={(event) => this.setTextValue(event)}/> */}
           {/* <RichEditor SummaryText={this.props.SummaryText} editorState={editorState} summaryId={this.props.summaryId} onChange={(e)=>{console.log(e)}} /> */}
-          <RichEditorContainer SummaryText={this.props.SummaryText}/>
+          <RichEditorContainer SummaryText={this.props.SummaryText} runWhileLeaving={this.saveEditedText}/>
       </Animated>);
     }
   }

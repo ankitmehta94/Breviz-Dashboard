@@ -49,7 +49,7 @@ class SitePage extends Component {
                     </a>
                   </h1>
                 </div>
-                <Link to={"./id:dummySummary"} className={classNames([style['button'],style['button-primary']])}>Look at Demo Summary</Link>
+                <Link to={"./id:dummySummary"} className={classNames([style['button'],style['button-primary']])}>Summary Dashboard</Link>
               </div>
             </div>
           </header>
@@ -68,13 +68,13 @@ class SitePage extends Component {
                     </p>
                     <div className={style['hero-cta']}>
                       <label className={classNames([style['button'],style['button-primary']])} >
-                        Upload Zoom Transcript
+                        Upload WebVTT Transcript
                         <input className={style['hidden-file-input']} type={'file'} onChange={this.sendZoomTranscript} />
                       </label>
-                      <label className={style["button"]} >
+                      {/* <label className={style["button"]} >
                       Upload Otter Transcript
                       <input className={style['hidden-file-input']} type={'file'} onChange={this.sendOtterTranscript} />
-                      </label>
+                      </label> */}
                     </div>
                   </div>
                   {/* <div className={classNames([style['hero-figure'] ,style['anime-element']])}>

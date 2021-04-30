@@ -2,6 +2,7 @@ import Summaries from '../../Constants/dummySummaries';
 import {UPDATE_SUMMARY, SELECT_SUMMARY, CLICKED_TEXT, ADD_SUMMARY, SET_CREATION_LOADER, SET_FILENAME } from '../../Constants/actionConstants';
 
 const initialState = {
+    updateKey:'',
     SummaryListObject: {},
     SummaryKey:'',
     clickedText: '',
@@ -11,10 +12,12 @@ const initialState = {
 const SummaryListReducer =  (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_SUMMARY: {
+      const {SummaryListObject, updateKey} = action.payload
       return {
         ...state,    
-        SummaryListObject: action.payload,
+        SummaryListObject: SummaryListObject,
         clickedText: '',
+        updateKey: updateKey
       };
     }
     case ADD_SUMMARY: {

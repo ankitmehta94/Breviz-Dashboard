@@ -58,7 +58,7 @@ class App extends Component {
     }
   }
   componentDidMount (){
-   this.fireTutorial();
+  //  this.fireTutorial();
   }
  render(){
   return (
